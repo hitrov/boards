@@ -1,4 +1,12 @@
-import { ADD_CARD, ADD_COLUMN, REMOVE_CARD, REMOVE_COLUMN, RENAME_CARD, RENAME_COLUMN, } from '../constants';
+import {
+  ADD_CARD,
+  ADD_COLUMN,
+  MOVE_CARD,
+  REMOVE_CARD,
+  REMOVE_COLUMN,
+  RENAME_CARD,
+  RENAME_COLUMN,
+} from '../constants';
 
 export interface Card {
   id: string
@@ -41,6 +49,13 @@ export interface IRenameCardAction {
   name: string;
 }
 
+export interface IMoveCardAction {
+  type: typeof MOVE_CARD,
+  fromColumnId: number;
+  toColumnId: number;
+  id: string;
+}
+
 export interface IRemoveCardAction {
   type: typeof REMOVE_CARD,
   columnId: number;
@@ -48,7 +63,7 @@ export interface IRemoveCardAction {
 }
 
 type ActionTypes = IAddColumnAction | IRenameColumnAction | IRemoveColumnAction |
-  IAddCardAction | IRenameCardAction | IRemoveCardAction;
+  IAddCardAction | IRenameCardAction | IRemoveCardAction | IMoveCardAction;
 
 const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
   switch (action.type) {
@@ -115,6 +130,39 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
           }),
         }
       });
+
+    case MOVE_CARD:
+      const toColumn = state.find(c => c.id === action.toColumnId);
+      if (!toColumn) {
+        return state;
+      }
+
+      const fromColumn = state.find(c => c.id === action.fromColumnId);
+      if (!fromColumn) {
+        return state;
+      }
+
+      const card = fromColumn.cards.find(c => c.id === action.id);
+      if (!card) {
+        return state;
+      }
+
+      const otherColumns = state.filter(c => c.id !== action.fromColumnId && c.id !== action.toColumnId);
+
+      return [
+        ...otherColumns,
+        {
+          ...fromColumn,
+          cards: fromColumn.cards.filter(c => c.id !== action.id),
+        },
+        {
+          ...toColumn,
+          cards: [
+            ...toColumn.cards,
+            card,
+          ],
+        },
+      ];
 
     case REMOVE_CARD:
       return state.map(c => {

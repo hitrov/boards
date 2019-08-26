@@ -1,6 +1,6 @@
 import React from 'react';
 import { Board } from '../../reducers/boards';
-import Columns from '../Columns';
+import Columns from '../../containers/Columns';
 import { Column } from '../../reducers/columns';
 
 interface IProps {

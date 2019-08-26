@@ -10,7 +10,9 @@ import {
 } from '../constants';
 import {
   IAddCardAction,
-  IAddColumnAction, IRemoveCardAction,
+  IAddColumnAction,
+  IMoveCardAction,
+  IRemoveCardAction,
   IRemoveColumnAction,
   IRenameCardAction,
   IRenameColumnAction
@@ -47,7 +49,7 @@ const moveCard = (fromColumnId: number, toColumnId: number, id: string) => ({
   fromColumnId,
   toColumnId,
   id,
-});
+} as IMoveCardAction);
 
 const renameCard = (columnId: number, id: string, name: string) => ({
   type: RENAME_CARD,

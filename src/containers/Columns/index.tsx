@@ -1,6 +1,6 @@
 import React from 'react';
 import { Column } from '../../reducers/columns';
-import CardsContainer from '../../containers/CardsContainer';
+import CardsContainer from '../CardsContainer';
 
 interface IProps {
   columns: Column[];
@@ -151,7 +151,10 @@ class Columns extends React.PureComponent<IProps, IState> {
                 X
               </button>
 
-              <CardsContainer column={column} />
+              <CardsContainer
+                columns={this.props.columns}
+                column={column}
+              />
             </li>)}
         </ul>
       </div>

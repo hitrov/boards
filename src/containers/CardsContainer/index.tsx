@@ -1,4 +1,4 @@
-import Cards from '../../components/Cards';
+import Cards from '../Cards';
 import {connect} from 'react-redux';
 import {
   addCard,

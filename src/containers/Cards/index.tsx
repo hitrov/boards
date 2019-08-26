@@ -1,7 +1,9 @@
 import React from 'react';
 import { Column } from '../../reducers/columns';
+import Card from '../Card';
 
 interface IProps {
+  columns: Column[];
   column: Column;
   addCard(columnId: number, name: string): void;
   moveCard(fromColumnId: number, toColumnId: number, id: string): void;
@@ -116,11 +118,16 @@ class Cards extends React.PureComponent<IProps, IState> {
           </button>
         </div>
 
-        <ul>
+        <div>
           {this.props.column.cards.map(card =>
-            <li key={card.id}>
-              {card.name}
-
+            <Card
+              key={card.id}
+              card={card}
+              columns={this.props.columns}
+              column={this.props.column}
+              moveCard={this.props.moveCard}
+              removeCard={this.props.removeCard}
+            >
               <button
                 onClick={this.onEditCardClick(card.id)}
               >
@@ -149,8 +156,8 @@ class Cards extends React.PureComponent<IProps, IState> {
               >
                 X
               </button>
-            </li>)}
-        </ul>
+            </Card>)}
+        </div>
       </div>
     );
   }
