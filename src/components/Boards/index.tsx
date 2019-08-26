@@ -8,15 +8,23 @@ interface IProps {
   columns: Column[];
 
   addBoard(): void;
+
   addColumn(name: string): void;
+  renameColumn(id: number, name: string): void;
+  removeColumn(id: number): void;
 }
 
-const Boards = ({ boards, columns, addBoard, addColumn }: IProps) => {
+const Boards = ({ boards, columns, addBoard, addColumn, renameColumn, removeColumn }: IProps) => {
   return (
     <div>
       <h1>Boards</h1>
 
-      <Columns columns={columns} addColumn={addColumn} />
+      <Columns
+        columns={columns}
+        addColumn={addColumn}
+        renameColumn={renameColumn}
+        removeColumn={removeColumn}
+      />
 
       <button
         onClick={addBoard}

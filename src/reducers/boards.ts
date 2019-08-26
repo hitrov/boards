@@ -13,7 +13,7 @@ export interface IAddBoardAction extends IBasicAction {
   name: string;
 }
 
-const boards = (state: Board[] = [], action: IAddBoardAction) => {
+const boards = (state: Board[] = [], action: IAddBoardAction): Board[] => {
   switch (action.type) {
     case ADD_BOARD_SUCCESS:
       return [

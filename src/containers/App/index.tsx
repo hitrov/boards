@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {
   addBoard,
   addColumn,
+  renameColumn,
+  removeColumn,
 } from '../../actions';
 import {RootState} from '../../reducers';
 
@@ -12,6 +14,8 @@ const App = connect((state: RootState) => ({
 }), {
   addBoard,
   addColumn,
+  renameColumn,
+  removeColumn,
 })(Boards);
 
 export default App;
