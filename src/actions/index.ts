@@ -27,38 +27,38 @@ const addColumn = (name: string) => ({
   name,
 } as IAddColumnAction);
 
-const renameColumn = (id: number, name: string) => ({
+const renameColumn = (id: string, name: string) => ({
   type: RENAME_COLUMN,
   id,
   name,
 } as IRenameColumnAction);
 
-const removeColumn = (id: number) => ({
+const removeColumn = (id: string) => ({
   type: REMOVE_COLUMN,
   id,
 } as IRemoveColumnAction);
 
-const addCard = (columnId: number, name: string) => ({
+const addCard = (columnId: string, name: string) => ({
   type: ADD_CARD,
   name,
   columnId,
 } as IAddCardAction);
 
-const moveCard = (fromColumnId: number, toColumnId: number, id: string) => ({
+const moveCard = (fromColumnId: string, toColumnId: string, id: string) => ({
   type: MOVE_CARD,
   fromColumnId,
   toColumnId,
   id,
 } as IMoveCardAction);
 
-const renameCard = (columnId: number, id: string, name: string) => ({
+const renameCard = (columnId: string, id: string, name: string) => ({
   type: RENAME_CARD,
   id,
   name,
   columnId,
 } as IRenameCardAction);
 
-const removeCard = (columnId: number, id: string) => ({
+const removeCard = (columnId: string, id: string) => ({
   type: REMOVE_CARD,
   columnId,
   id,

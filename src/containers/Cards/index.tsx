@@ -5,10 +5,10 @@ import Card from '../Card';
 interface IProps {
   columns: Column[];
   column: Column;
-  addCard(columnId: number, name: string): void;
-  moveCard(fromColumnId: number, toColumnId: number, id: string): void;
-  renameCard(columnId: number, id: string, name: string): void;
-  removeCard(columnId: number, id: string): void;
+  addCard(columnId: string, name: string): void;
+  moveCard(fromColumnId: string, toColumnId: string, id: string): void;
+  renameCard(columnId: string, id: string, name: string): void;
+  removeCard(columnId: string, id: string): void;
 }
 
 interface IState {

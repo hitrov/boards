@@ -6,14 +6,14 @@ interface IProps {
   columns: Column[];
 
   addColumn(name: string): void;
-  renameColumn(id: number, name: string): void;
-  removeColumn(id: number): void;
+  renameColumn(id: string, name: string): void;
+  removeColumn(id: string): void;
 }
 
 interface IState {
   name: string;
   renamingColumns: {
-    id: number;
+    id: string;
     name: string;
   }[],
 }
@@ -32,7 +32,7 @@ class Columns extends React.PureComponent<IProps, IState> {
     });
   };
 
-  onRenameColumnChange = (id: number) => (e: any) => {
+  onRenameColumnChange = (id: string) => (e: any) => {
     const newName = e.target.value;
 
     this.setState(prevState => ({
@@ -46,7 +46,7 @@ class Columns extends React.PureComponent<IProps, IState> {
     }));
   };
 
-  onRenameColumnClick = (id: number) => () => {
+  onRenameColumnClick = (id: string) => () => {
     const c = this.state.renamingColumns.find(c => c.id === id);
     if (!c) {
       return;
@@ -59,7 +59,7 @@ class Columns extends React.PureComponent<IProps, IState> {
     }), () => this.props.renameColumn(id, newName));
   };
 
-  onEditColumnClick = (id: number) => () => {
+  onEditColumnClick = (id: string) => () => {
     const c = this.props.columns.find(c => c.id === id);
     if (!c) {
       return;
@@ -78,7 +78,7 @@ class Columns extends React.PureComponent<IProps, IState> {
     }));
   };
 
-  onCancelRenameColumnClick = (id: number) => () => {
+  onCancelRenameColumnClick = (id: string) => () => {
     this.setState(prevState => ({
       renamingColumns: prevState.renamingColumns.filter(c => c.id !== id),
     }));
@@ -92,7 +92,7 @@ class Columns extends React.PureComponent<IProps, IState> {
     });
   };
 
-  getTemporaryNameStateValue = (id: number): string => {
+  getTemporaryNameStateValue = (id: string): string => {
     const column = this.state.renamingColumns.find(c => c.id === id);
     if (!column) {
       return '';
@@ -100,7 +100,7 @@ class Columns extends React.PureComponent<IProps, IState> {
     return column.name;
   };
 
-  displayEditName = (id: number): boolean => {
+  displayEditName = (id: string): boolean => {
     return this.state.renamingColumns.find(c => c.id === id) !== undefined;
   };
 

@@ -7,31 +7,31 @@ interface IProps {
   columns: Column[];
   column: Column;
   card: CardItem;
-  moveCard(fromColumnId: number, toColumnId: number, id: string): void;
+  moveCard(fromColumnId: string, toColumnId: string, id: string): void;
   // renameCard(columnId: number, id: string, name: string): void;
-  removeCard(columnId: number, id: string): void;
+  removeCard(columnId: string, id: string): void;
 }
 
 interface IState {
-  moveToCardId: number;
+  moveToCardId: string;
   isModalOpened: boolean;
 }
 
 class Card extends React.PureComponent<IProps, IState> {
   public readonly state: Readonly<IState> = {
-    moveToCardId: 0,
+    moveToCardId: '',
     isModalOpened: false,
   };
 
   onMoveToCardChange = (e: any) => {
-    const moveToCardId = Number(e.target.value);
+    const moveToCardId = e.target.value;
 
     this.setState({
       moveToCardId,
     });
   };
 
-  onMoveCardClick = (toColumnId: number, id: string) => () => {
+  onMoveCardClick = (toColumnId: string, id: string) => () => {
     this.props.moveCard(this.props.column.id, toColumnId, id);
   };
 

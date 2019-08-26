@@ -7,6 +7,7 @@ import {
   RENAME_CARD,
   RENAME_COLUMN,
 } from '../constants';
+import uuidv4 from 'uuid/v4';
 
 export interface Card {
   id: string
@@ -15,7 +16,7 @@ export interface Card {
 }
 
 export interface Column {
-  id: number
+  id: string
   name: string;
   cards: Card[],
 }
@@ -27,38 +28,38 @@ export interface IAddColumnAction {
 
 export interface IRenameColumnAction {
   type: typeof RENAME_COLUMN,
-  id: number;
+  id: string;
   name: string;
 }
 
 export interface IRemoveColumnAction {
   type: typeof REMOVE_COLUMN,
-  id: number;
+  id: string;
 }
 
 export interface IAddCardAction {
   type: typeof ADD_CARD,
-  columnId: number;
+  columnId: string;
   name: string;
 }
 
 export interface IRenameCardAction {
   type: typeof RENAME_CARD,
-  columnId: number;
+  columnId: string;
   id: string;
   name: string;
 }
 
 export interface IMoveCardAction {
   type: typeof MOVE_CARD,
-  fromColumnId: number;
-  toColumnId: number;
+  fromColumnId: string;
+  toColumnId: string;
   id: string;
 }
 
 export interface IRemoveCardAction {
   type: typeof REMOVE_CARD,
-  columnId: number;
+  columnId: string;
   id: string;
 }
 
@@ -71,7 +72,7 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
       return [
         ...state,
         {
-          id: state.length + 1,
+          id: uuidv4(),
           name: action.name,
           cards: [],
         }
@@ -88,7 +89,7 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
           cards: [
             ...c.cards,
             {
-              id: `${c.id}-${c.cards.length+1}`,
+              id: uuidv4(),
               name: action.name,
             }
           ],

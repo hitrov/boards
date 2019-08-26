@@ -10,8 +10,8 @@ interface IProps {
   addBoard(): void;
 
   addColumn(name: string): void;
-  renameColumn(id: number, name: string): void;
-  removeColumn(id: number): void;
+  renameColumn(id: string, name: string): void;
+  removeColumn(id: string): void;
 }
 
 const Boards = ({ boards, columns, addBoard, addColumn, renameColumn, removeColumn }: IProps) => {
