@@ -22,6 +22,7 @@ const configureStore = () => {
         name: 'Default board',
       }
     ],
+    columns: [],
   };
 
   const store = createStore(

@@ -1,25 +1,25 @@
 import { IBasicAction } from './index';
 import {
-  ADD_BOARD_SUCCESS,
+  ADD_COLUMN,
 } from '../constants';
 
-export interface Board {
+export interface Column {
   id: number
   name: string;
 }
 
-export interface IAddBoardAction extends IBasicAction {
+export interface IAddColumnAction extends IBasicAction {
   id: number;
   name: string;
 }
 
-const boards = (state: Board[] = [], action: IAddBoardAction) => {
+const columns = (state: Column[] = [], action: IAddColumnAction) => {
   switch (action.type) {
-    case ADD_BOARD_SUCCESS:
+    case ADD_COLUMN:
       return [
         ...state,
         {
-          id: action.id,
+          id: state.length + 1,
           name: action.name,
         }
       ];
@@ -29,4 +29,4 @@ const boards = (state: Board[] = [], action: IAddBoardAction) => {
   }
 };
 
-export default boards;
+export default columns;
