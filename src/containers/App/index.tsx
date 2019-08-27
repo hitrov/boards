@@ -5,6 +5,7 @@ import {
   addColumn,
   renameColumn,
   removeColumn,
+  moveCard,
 } from '../../actions';
 import {RootState} from '../../reducers';
 
@@ -16,6 +17,7 @@ const App = connect((state: RootState) => ({
   addColumn,
   renameColumn,
   removeColumn,
+  moveCard,
 })(Boards);
 
 export default App;

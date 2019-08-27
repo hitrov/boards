@@ -32,7 +32,9 @@ const Card: React.FunctionComponent<IProps> =
     onMoveToCardChange,
     onMoveCardClick,
   }) => {
-  const [{isDragging}, drag] = useDrag({
+  const [{
+    isDragging,
+  }, drag] = useDrag({
     item: {
       type: ITEM_TYPES.CARD,
       column: column,

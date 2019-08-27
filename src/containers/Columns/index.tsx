@@ -10,6 +10,7 @@ interface IProps {
   addColumn(name: string): void;
   renameColumn(id: string, name: string): void;
   removeColumn(id: string): void;
+  moveCard(fromColumnId: string, toColumnId: string, id: string): void;
 }
 
 interface IState {
@@ -136,6 +137,7 @@ class Columns extends React.PureComponent<IProps, IState> {
                 onRenameColumnClick={this.onRenameColumnClick}
                 removeColumn={this.props.removeColumn}
                 renameColumn={this.props.renameColumn}
+                moveCard={this.props.moveCard}
               />
             </Col>)}
         </Row>

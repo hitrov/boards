@@ -14,9 +14,10 @@ interface IProps {
   addColumn(name: string): void;
   renameColumn(id: string, name: string): void;
   removeColumn(id: string): void;
+  moveCard(fromColumnId: string, toColumnId: string, id: string): void;
 }
 
-const Boards = ({ boards, columns, addBoard, addColumn, renameColumn, removeColumn }: IProps) => {
+const Boards = ({ boards, columns, addBoard, addColumn, renameColumn, removeColumn, moveCard }: IProps) => {
   return (
     <DndProvider backend={HTML5Backend}>
       <div>
@@ -27,6 +28,7 @@ const Boards = ({ boards, columns, addBoard, addColumn, renameColumn, removeColu
           addColumn={addColumn}
           renameColumn={renameColumn}
           removeColumn={removeColumn}
+          moveCard={moveCard}
         />
 
         <button

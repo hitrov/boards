@@ -18,7 +18,14 @@ interface IProps {
   getTemporaryNameStateValue(id: string): string;
   onRenameColumnClick(id: string): () => void;
   onCancelRenameColumnClick(id: string): () => void;
+  moveCard(fromColumnId: string, toColumnId: string, id: string): void;
 }
+
+const cd = (item: any, monitor: DropTargetMonitor): boolean => {
+  // console.log('item', item);
+  // console.log('monitor', monitor);
+  return true;
+};
 
 const Column: React.FunctionComponent<IProps> =
   ({
@@ -31,18 +38,21 @@ const Column: React.FunctionComponent<IProps> =
      getTemporaryNameStateValue,
      onRenameColumnClick,
      onCancelRenameColumnClick,
+     moveCard,
    }) => {
     const [{
       isOver,
-      canDrop: canD,
+      canDrop,
     }, drop] = useDrop({
       accept: ITEM_TYPES.CARD,
-      drop: console.log,
-      canDrop: (item: any, monitor: DropTargetMonitor) => {
-        console.log('item', item);
-        // console.log('monitor', monitor);
-        return true;
+      drop: (item: any, monitor: DropTargetMonitor) => {
+        console.log('dropped item:', item);
+        // return {
+        //   column,
+        // }
+        moveCard(item.column.id, column.id, item.card.id);
       },
+      canDrop: cd,
 
       collect: monitor => ({
         isOver: monitor.isOver(),
@@ -52,8 +62,8 @@ const Column: React.FunctionComponent<IProps> =
       }),
     });
 
-    console.log('isOver', isOver);
-    console.log('canD', canD);
+    // console.log('isOver', isOver);
+    // console.log('canDrop', canDrop);
 
   return (
     <div ref={drop}>
