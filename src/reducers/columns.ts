@@ -133,12 +133,6 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
       });
 
     case MOVE_CARD:
-      // TODO: change column id
-      const toColumn = state.find(c => c.id === action.toColumnId);
-      if (!toColumn) {
-        return state;
-      }
-
       const fromColumn = state.find(c => c.id === action.fromColumnId);
       if (!fromColumn) {
         return state;
@@ -149,22 +143,30 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
         return state;
       }
 
-      const otherColumns = state.filter(c => c.id !== action.fromColumnId && c.id !== action.toColumnId);
+      return state.map(c => {
+        if (c.id !== action.toColumnId && c.id !== action.fromColumnId) {
+          return c;
+        }
 
-      return [
-        ...otherColumns,
-        {
-          ...fromColumn,
-          cards: fromColumn.cards.filter(c => c.id !== action.id),
-        },
-        {
-          ...toColumn,
-          cards: [
-            ...toColumn.cards,
-            card,
-          ],
-        },
-      ];
+        if (c.id === action.toColumnId) {
+          return {
+            ...c,
+            cards: [
+              ...c.cards,
+              card,
+            ],
+          };
+        }
+
+        if (c.id === action.fromColumnId) {
+          return {
+            ...c,
+            cards: c.cards.filter(card => card.id !== action.id)
+          }
+        }
+
+        return c;
+      });
 
     case REMOVE_CARD:
       return state.map(c => {
