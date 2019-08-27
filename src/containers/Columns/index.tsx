@@ -1,6 +1,7 @@
 import React from 'react';
 import { Column } from '../../reducers/columns';
 import CardsContainer from '../CardsContainer';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 interface IProps {
   columns: Column[];
@@ -106,20 +107,22 @@ class Columns extends React.PureComponent<IProps, IState> {
 
   render() {
     return (
-      <div>
-        <div>
-          Name:
-          <input onChange={this.onAddColumnNameChange} value={this.state.name} />
-          <button
-            onClick={this.onAddColumn}
-          >
-            Add column
-          </button>
-        </div>
+      <Grid>
+        <Row>
+          <Col>
+            Name:
+            <input onChange={this.onAddColumnNameChange} value={this.state.name} />
+            <button
+              onClick={this.onAddColumn}
+            >
+              Add column
+            </button>
+          </Col>
+        </Row>
 
-        <ul>
+        <Row>
           {this.props.columns.map(column =>
-            <li key={column.id}>
+            <Col key={column.id} xs={4}>
               {column.name}
 
               <button
@@ -155,9 +158,9 @@ class Columns extends React.PureComponent<IProps, IState> {
                 columns={this.props.columns}
                 column={column}
               />
-            </li>)}
-        </ul>
-      </div>
+            </Col>)}
+        </Row>
+      </Grid>
     );
   }
 }
