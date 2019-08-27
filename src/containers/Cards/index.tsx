@@ -1,6 +1,7 @@
 import React from 'react';
 import { Column } from '../../reducers/columns';
 import Card from '../Card';
+import './index.scss';
 
 interface IProps {
   columns: Column[];
@@ -107,7 +108,7 @@ class Cards extends React.PureComponent<IProps, IState> {
 
   render() {
     return (
-      <div>
+      <div className='ah-column'>
         <div>
           Name:
           <input onChange={this.onAddCardNameChange} value={this.state.name} />

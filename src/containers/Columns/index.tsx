@@ -2,6 +2,7 @@ import React from 'react';
 import { Column } from '../../reducers/columns';
 import CardsContainer from '../CardsContainer';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import './index.scss';
 
 interface IProps {
   columns: Column[];
@@ -107,7 +108,7 @@ class Columns extends React.PureComponent<IProps, IState> {
 
   render() {
     return (
-      <Grid>
+      <Grid className='ah-columns'>
         <Row>
           <Col>
             Name:

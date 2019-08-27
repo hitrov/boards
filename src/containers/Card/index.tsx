@@ -2,6 +2,7 @@ import React from 'react';
 import { Column } from '../../reducers/columns';
 import Modal from 'react-responsive-modal';
 import { Card as CardItem } from '../../reducers/columns';
+import './index.scss';
 
 interface IProps {
   columns: Column[];
@@ -47,7 +48,7 @@ class Card extends React.PureComponent<IProps, IState> {
 
   render() {
     return (
-      <div>
+      <div className='ah-card'>
         <Modal
           open={this.state.isModalOpened}
           onClose={this.toggleModal}
