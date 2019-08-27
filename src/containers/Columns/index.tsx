@@ -1,11 +1,11 @@
 import React from 'react';
-import { Column } from '../../reducers/columns';
-import CardsContainer from '../CardsContainer';
+import Column from '../../components/Column';
+import { Column as ColumnItem } from '../../reducers/columns';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import './index.scss';
 
 interface IProps {
-  columns: Column[];
+  columns: ColumnItem[];
 
   addColumn(name: string): void;
   renameColumn(id: string, name: string): void;
@@ -124,40 +124,18 @@ class Columns extends React.PureComponent<IProps, IState> {
         <Row>
           {this.props.columns.map(column =>
             <Col key={column.id} xs={4}>
-              {column.name}
-
-              <button
-                onClick={this.onEditColumnClick(column.id)}
-              >
-                Edit
-              </button>
-
-              {this.displayEditName(column.id) && <div>
-                <input
-                  onChange={this.onRenameColumnChange(column.id)}
-                  value={this.getTemporaryNameStateValue(column.id)}
-                />
-                <button
-                  onClick={this.onRenameColumnClick(column.id)}
-                >
-                  Rename
-                </button>
-                <button
-                  onClick={this.onCancelRenameColumnClick(column.id)}
-                >
-                  Cancel
-                </button>
-              </div>}
-
-              <button
-                onClick={() => this.props.removeColumn(column.id)}
-              >
-                X
-              </button>
-
-              <CardsContainer
-                columns={this.props.columns}
+              <Column
                 column={column}
+                columns={this.props.columns}
+                addColumn={this.props.addColumn}
+                displayEditName={this.displayEditName}
+                getTemporaryNameStateValue={this.getTemporaryNameStateValue}
+                onCancelRenameColumnClick={this.onCancelRenameColumnClick}
+                onEditColumnClick={this.onEditColumnClick}
+                onRenameColumnChange={this.onRenameColumnChange}
+                onRenameColumnClick={this.onRenameColumnClick}
+                removeColumn={this.props.removeColumn}
+                renameColumn={this.props.renameColumn}
               />
             </Col>)}
         </Row>

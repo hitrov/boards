@@ -17,7 +17,7 @@ interface IProps {
   removeCard(columnId: string, id: string): void;
   toggleModal(): void;
   onMoveToCardChange(e: any): void;
-  onMoveCardClick(moveToCardId: string): void;
+  onMoveCardClick(moveToCardId: string): () => void;
 }
 
 const Card: React.FunctionComponent<IProps> =
@@ -66,7 +66,7 @@ const Card: React.FunctionComponent<IProps> =
           }
         </select>
         <button
-          onClick={() => onMoveCardClick(card.id)}
+          onClick={onMoveCardClick(card.id)}
         >
           Move card
         </button>
