@@ -10,6 +10,11 @@ const MOVE_CARD = 'MOVE_CARD';
 const RENAME_CARD = 'RENAME_CARD';
 const REMOVE_CARD = 'REMOVE_CARD';
 
+const ITEM_TYPES = {
+  COLUMN: 'COLUMN',
+  CARD: 'CARD',
+};
+
 export {
   ADD_BOARD_REQUEST,
   ADD_BOARD_SUCCESS,
@@ -22,4 +27,6 @@ export {
   MOVE_CARD,
   RENAME_CARD,
   REMOVE_CARD,
+
+  ITEM_TYPES,
 };

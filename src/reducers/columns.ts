@@ -133,6 +133,7 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
       });
 
     case MOVE_CARD:
+      // TODO: change column id
       const toColumn = state.find(c => c.id === action.toColumnId);
       if (!toColumn) {
         return state;
