@@ -1,5 +1,5 @@
 import React from 'react';
-import Column from '../../components/Column';
+import Column from '../Column';
 import { Column as ColumnItem } from '../../reducers/columns';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import './index.scss';

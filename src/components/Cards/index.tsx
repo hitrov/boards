@@ -1,6 +1,6 @@
 import React from 'react';
 import { Column } from '../../reducers/columns';
-import CardContainer from '../CardContainer';
+import CardWrapper from '../CardWrapper';
 import './index.scss';
 
 interface IProps {
@@ -121,7 +121,7 @@ class Cards extends React.PureComponent<IProps, IState> {
 
         <div>
           {this.props.column.cards.map(card =>
-            <CardContainer
+            <CardWrapper
               key={card.id}
               card={card}
               columns={this.props.columns}
@@ -157,7 +157,7 @@ class Cards extends React.PureComponent<IProps, IState> {
               >
                 X
               </button>
-            </CardContainer>)}
+            </CardWrapper>)}
         </div>
       </div>
     );

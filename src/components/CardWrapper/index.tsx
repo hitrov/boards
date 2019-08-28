@@ -1,7 +1,7 @@
 import React from 'react';
 import { Column } from '../../reducers/columns';
 import { Card as CardItem } from '../../reducers/columns';
-import Card from '../../components/Card';
+import Card from '../Card';
 
 interface IProps {
   columns: Column[];
@@ -16,7 +16,7 @@ interface IState {
   isModalOpened: boolean;
 }
 
-class CardContainer extends React.PureComponent<IProps, IState> {
+class CardWrapper extends React.PureComponent<IProps, IState> {
   public readonly state: Readonly<IState> = {
     isModalOpened: false,
   };
@@ -44,4 +44,4 @@ class CardContainer extends React.PureComponent<IProps, IState> {
   }
 }
 
-export default CardContainer;
+export default CardWrapper;

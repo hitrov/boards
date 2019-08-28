@@ -1,6 +1,6 @@
 import React from 'react';
 import { Board } from '../../reducers/boards';
-import Columns from '../../containers/Columns';
+import Columns from '../Columns';
 import { Column } from '../../reducers/columns';
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
