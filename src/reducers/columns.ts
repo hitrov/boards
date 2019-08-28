@@ -16,6 +16,7 @@ export interface Card {
 }
 
 export interface Column {
+  boardId: string;
   id: string
   name: string;
   cards: Card[],
@@ -72,6 +73,7 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
       return [
         ...state,
         {
+          boardId: uuidv4(),
           id: uuidv4(),
           name: action.name,
           cards: [],

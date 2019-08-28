@@ -18,12 +18,13 @@ const configureStore = () => {
   const persistedState: RootState = {
     boards: [
       {
-        id: 1,
+        id: '1',
         name: 'Default board',
       }
     ],
     columns: [
       {
+        boardId: '1',
         id: '1',
         name: 'aaa',
         cards: [
@@ -42,6 +43,7 @@ const configureStore = () => {
         ],
       },
       {
+        boardId: '1',
         id: '2',
         name: 'bbb',
         cards: [
@@ -60,6 +62,7 @@ const configureStore = () => {
         ],
       },
       {
+        boardId: '1',
         id: '3',
         name: 'ccc',
         cards: [

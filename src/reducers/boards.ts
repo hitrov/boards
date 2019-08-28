@@ -4,12 +4,12 @@ import {
 } from '../constants';
 
 export interface Board {
-  id: number
+  id: string
   name: string;
 }
 
 export interface IAddBoardAction extends IBasicAction {
-  id: number;
+  id: string;
   name: string;
 }
 

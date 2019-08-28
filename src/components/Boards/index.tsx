@@ -1,49 +1,40 @@
 import React from 'react';
-import { Board } from '../../reducers/boards';
-import Columns from '../Columns';
-import { Column } from '../../reducers/columns';
+import { Board as BoardItem } from '../../reducers/boards';
 import { DndProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+import HTML5Backend from 'react-dnd-html5-backend';
+import { Switch, Route, Link } from 'react-router-dom';
+import Board from '../Board';
 
 interface IProps {
-  boards: Board[];
-  columns: Column[];
-
+  boards: BoardItem[];
   addBoard(): void;
-
-  addColumn(name: string): void;
-  renameColumn(id: string, name: string): void;
-  removeColumn(id: string): void;
-  moveCard(fromColumnId: string, toColumnId: string, id: string): void;
 }
 
-const Boards = ({ boards, columns, addBoard, addColumn, renameColumn, removeColumn, moveCard }: IProps) => {
+const Boards = ({ boards, addBoard }: IProps) => {
   return (
     <DndProvider backend={HTML5Backend}>
-      <div>
-        <h1>Boards</h1>
+      <Switch>
+        <Route exact path="/" component={() => (
+          <div>
+            <h1>Boards</h1>
 
-        <Columns
-          columns={columns}
-          addColumn={addColumn}
-          renameColumn={renameColumn}
-          removeColumn={removeColumn}
-          moveCard={moveCard}
-        />
+            <ul>
+              {boards.map(b =>
+                <li key={b.id}>
+                  <Link to={`/boards/${b.id}`}>{b.name}</Link>
+                </li>)}
+            </ul>
 
-        <button
-          onClick={addBoard}
-        >
-          Add test board
-        </button>
-
-        <ul>
-          {boards.map(b =>
-            <li key={b.id}>
-              {b.name}
-            </li>)}
-        </ul>
-      </div>
+            <button
+              onClick={addBoard}
+            >
+              Add test board
+            </button>
+          </div>
+        )} />
+        <Route path="/boards/:boardId" component={Board}/>
+        <Route component={() => <h1>404 Not Found</h1>}/>
+      </Switch>
     </DndProvider>
   );
 }
