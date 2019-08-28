@@ -32,7 +32,7 @@ const Boards = ({ boards, addBoard }: IProps) => {
             </button>
           </div>
         )} />
-        <Route path="/boards/:boardId" component={Board}/>
+        <Route path="/boards/:boardId/cards/:cardId?" component={Board}/>
         <Route component={() => <h1>404 Not Found</h1>}/>
       </Switch>
     </DndProvider>

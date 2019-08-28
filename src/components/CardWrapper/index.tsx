@@ -2,8 +2,14 @@ import React from 'react';
 import { Column } from '../../reducers/columns';
 import { Card as CardItem } from '../../reducers/columns';
 import Card from '../Card';
+import { RouteComponentProps } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
-interface IProps {
+interface RouteParams {
+  cardId?: string;
+}
+
+interface IProps extends RouteComponentProps<RouteParams> {
   columns: Column[];
   column: Column;
   card: CardItem;
@@ -12,31 +18,22 @@ interface IProps {
   removeCard(columnId: string, id: string): void;
 }
 
-interface IState {
-  isModalOpened: boolean;
-}
-
-class CardWrapper extends React.PureComponent<IProps, IState> {
-  public readonly state: Readonly<IState> = {
-    isModalOpened: false,
+class CardWrapper extends React.PureComponent<IProps> {
+  onCloseModal = () => {
+    this.props.history.push(`/boards/${this.props.column.boardId}/cards`)
   };
 
-  toggleModal = () => {
-    this.setState(prevState => ({
-      isModalOpened: !prevState.isModalOpened,
-    }));
-  };
-
+  // TODO: handle not found card
   render() {
     return (
       <Card
-        isModalOpened={this.state.isModalOpened}
+        isModalOpened={this.props.match.params.cardId === this.props.card.id}
         columns={this.props.columns}
         column={this.props.column}
         card={this.props.card}
         moveCard={this.props.moveCard}
         removeCard={this.props.removeCard}
-        toggleModal={this.toggleModal}
+        onCloseModal={this.onCloseModal}
       >
         {this.props.children}
       </Card>
@@ -44,4 +41,4 @@ class CardWrapper extends React.PureComponent<IProps, IState> {
   }
 }
 
-export default CardWrapper;
+export default withRouter(CardWrapper);
