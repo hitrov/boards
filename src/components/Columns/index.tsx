@@ -5,9 +5,10 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import './index.scss';
 
 interface IProps {
+  boardId: string;
   columns: ColumnItem[];
 
-  addColumn(name: string): void;
+  addColumn(name: string, boardId: string): void;
   renameColumn(id: string, name: string): void;
   removeColumn(id: string): void;
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
@@ -88,7 +89,7 @@ class Columns extends React.PureComponent<IProps, IState> {
   };
 
   onAddColumn = () => {
-    this.props.addColumn(this.state.name);
+    this.props.addColumn(this.state.name, this.props.boardId);
 
     this.setState({
       name: '',
@@ -124,7 +125,7 @@ class Columns extends React.PureComponent<IProps, IState> {
 
         <Row>
           {this.props.columns.map(column =>
-            <Col key={column.id} xs={4}>
+            <Col key={column.id} xs={12} sm={6} md={4} lg={3}>
               <Column
                 column={column}
                 addColumn={this.props.addColumn}

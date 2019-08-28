@@ -17,14 +17,17 @@ import {
   IRenameCardAction,
   IRenameColumnAction
 } from '../reducers/columns';
+import uuidv4 from 'uuid/v4';
 
 const addBoard = () => ({
   type: ADD_BOARD_REQUEST,
 });
 
-const addColumn = (name: string) => ({
+const addColumn = (name: string, boardId: string) => ({
   type: ADD_COLUMN,
   name,
+  boardId,
+  id: uuidv4(),
 } as IAddColumnAction);
 
 const renameColumn = (id: string, name: string) => ({
@@ -42,6 +45,7 @@ const addCard = (columnId: string, name: string) => ({
   type: ADD_CARD,
   name,
   columnId,
+  id: uuidv4(),
 } as IAddCardAction);
 
 const moveCard = (fromColumnId: string, toColumnId: string, id: string) => ({

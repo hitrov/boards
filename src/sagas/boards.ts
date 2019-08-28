@@ -2,19 +2,18 @@ import {
   ADD_BOARD_REQUEST,
   ADD_BOARD_SUCCESS,
 } from '../constants';
-import {put, takeLatest, select} from "redux-saga/effects";
-import { IBasicAction, RootState } from '../reducers';
+import {put, takeLatest} from "redux-saga/effects";
+import { IBasicAction } from '../reducers';
 import { IAddBoardAction } from '../reducers/boards';
+import uuidv4 from 'uuid/v4';
 
 const onAddBoard = function* () {
-  const boards = yield select((state: RootState) => state.boards);
-
-  const id = boards.length + 1;
+  const id = uuidv4();
 
   yield put<IAddBoardAction>({
     type: ADD_BOARD_SUCCESS,
     id,
-    name: `Another board id=${id}`,
+    name: id,
   });
 };
 

@@ -7,7 +7,7 @@ import { ITEM_TYPES } from '../../constants';
 interface IProps {
   column: ColumnItem;
 
-  addColumn(name: string): void;
+  addColumn(name: string, boardId: string): void;
   renameColumn(id: string, name: string): void;
   removeColumn(id: string): void;
 

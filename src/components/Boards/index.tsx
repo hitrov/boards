@@ -21,7 +21,7 @@ const Boards = ({ boards, addBoard }: IProps) => {
             <ul>
               {boards.map(b =>
                 <li key={b.id}>
-                  <Link to={`/boards/${b.id}`}>{b.name}</Link>
+                  <Link to={`/boards/${b.id}/cards`}>{b.name}</Link>
                 </li>)}
             </ul>
 
@@ -37,6 +37,6 @@ const Boards = ({ boards, addBoard }: IProps) => {
       </Switch>
     </DndProvider>
   );
-}
+};
 
 export default Boards;

@@ -7,7 +7,6 @@ import {RootState} from '../../reducers';
 
 const App = connect((state: RootState) => ({
   boards: state.boards,
-  columns: state.columns,
 }), {
   addBoard,
 })(Boards);
