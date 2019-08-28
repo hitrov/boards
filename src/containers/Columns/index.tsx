@@ -127,7 +127,6 @@ class Columns extends React.PureComponent<IProps, IState> {
             <Col key={column.id} xs={4}>
               <Column
                 column={column}
-                columns={this.props.columns}
                 addColumn={this.props.addColumn}
                 displayEditName={this.displayEditName}
                 getTemporaryNameStateValue={this.getTemporaryNameStateValue}

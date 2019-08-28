@@ -5,7 +5,6 @@ import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { ITEM_TYPES } from '../../constants';
 
 interface IProps {
-  columns: ColumnItem[];
   column: ColumnItem;
 
   addColumn(name: string): void;
