@@ -6,8 +6,11 @@ import {
   removeCard,
   renameCard,
 } from '../../actions';
+import { RootState } from '../../reducers';
 
-const CardsContainer = connect(null, {
+const CardsContainer = connect((state: RootState) => ({
+  columns: state.columns,
+}), {
   addCard,
   moveCard,
   removeCard,

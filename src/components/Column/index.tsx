@@ -30,7 +30,6 @@ const cd = (item: any, monitor: DropTargetMonitor): boolean => {
 const Column: React.FunctionComponent<IProps> =
   ({
      column,
-     columns,
      removeColumn,
      onEditColumnClick,
      onRenameColumnChange,
@@ -99,7 +98,6 @@ const Column: React.FunctionComponent<IProps> =
       </button>
 
       <CardsContainer
-        columns={columns}
         column={column}
       />
     </div>
