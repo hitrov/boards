@@ -5,19 +5,17 @@ import { Card as CardItem } from '../../reducers/columns';
 import { useDrag } from 'react-dnd';
 import './index.scss';
 import { ITEM_TYPES } from '../../constants';
+import MoveToCardSelect from '../MoveToCardSelect';
 
 interface IProps {
   columns: Column[];
   column: Column;
   card: CardItem;
   isModalOpened: boolean;
-  moveToCardId: string;
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
   // renameCard(columnId: number, id: string, name: string): void;
   removeCard(columnId: string, id: string): void;
   toggleModal(): void;
-  onMoveToCardChange(e: any): void;
-  onMoveCardClick(moveToCardId: string): () => void;
 }
 
 const Card: React.FunctionComponent<IProps> =
@@ -27,10 +25,8 @@ const Card: React.FunctionComponent<IProps> =
     card,
     children,
     isModalOpened,
-    moveToCardId,
     toggleModal,
-    onMoveToCardChange,
-    onMoveCardClick,
+    moveCard,
   }) => {
   const [{
     isDragging,
@@ -56,22 +52,14 @@ const Card: React.FunctionComponent<IProps> =
         center
       >
         {card.name}
-        <select
-          onChange={onMoveToCardChange}
-          value={moveToCardId}
-        >
-          {columns
-            .filter(c => c.id !== column.id)
-            .map(c =>
-              <option key={c.id} value={c.id}>{c.name}</option>
-            )
-          }
-        </select>
-        <button
-          onClick={onMoveCardClick(card.id)}
-        >
-          Move card
-        </button>
+
+        <MoveToCardSelect
+          columns={columns}
+          column={column}
+          card={card}
+          moveCard={moveCard}
+        />
+
       </Modal>
 
       <div

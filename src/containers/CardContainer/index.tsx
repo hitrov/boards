@@ -13,26 +13,12 @@ interface IProps {
 }
 
 interface IState {
-  moveToCardId: string;
   isModalOpened: boolean;
 }
 
 class CardContainer extends React.PureComponent<IProps, IState> {
   public readonly state: Readonly<IState> = {
-    moveToCardId: '',
     isModalOpened: false,
-  };
-
-  onMoveToCardChange = (e: any) => {
-    const moveToCardId = e.target.value;
-
-    this.setState({
-      moveToCardId,
-    });
-  };
-
-  onMoveCardClick = (id: string) => () => {
-    this.props.moveCard(this.props.column.id, this.state.moveToCardId, id);
   };
 
   toggleModal = () => {
@@ -45,13 +31,10 @@ class CardContainer extends React.PureComponent<IProps, IState> {
     return (
       <Card
         isModalOpened={this.state.isModalOpened}
-        moveToCardId={this.state.moveToCardId}
         columns={this.props.columns}
         column={this.props.column}
         card={this.props.card}
         moveCard={this.props.moveCard}
-        onMoveCardClick={this.onMoveCardClick}
-        onMoveToCardChange={this.onMoveToCardChange}
         removeCard={this.props.removeCard}
         toggleModal={this.toggleModal}
       >
