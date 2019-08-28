@@ -71,6 +71,7 @@ type ActionTypes = IAddColumnAction | IRenameColumnAction | IRemoveColumnAction 
 
 const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
   switch (action.type) {
+    // TODO: validate empty title
     case ADD_COLUMN:
       return [
         ...state,
@@ -82,6 +83,8 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
         }
       ];
 
+    // TODO: validate empty title
+    // TODO: description
     case ADD_CARD:
       return state.map(c => {
         if (c.id !== action.columnId) {

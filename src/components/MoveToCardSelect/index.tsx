@@ -19,16 +19,12 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
     moveToCardId: '',
   };
 
-  availableColumns: Column[];
-
-  constructor(props: IProps) {
-    super(props);
-
-    this.availableColumns = props.columns
-      .filter(c => c.id !== props.column.id);
-  }
+  availableColumns: Column[] = [];
 
   componentWillMount(): void {
+    this.availableColumns = this.props.columns
+      .filter(c => c.id !== this.props.column.id);
+
     if (this.availableColumns.length) {
       this.setState({
         moveToCardId: this.availableColumns[0].id,
@@ -36,7 +32,9 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
     }
   }
 
+  // TODO: props.history.push
   onMoveCardClick = () => {
+    console.log(this.props);
     this.props.moveCard(this.props.column.id, this.state.moveToCardId, this.props.card.id);
   };
 
@@ -48,6 +46,7 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
     });
   };
 
+  // TODO: filter by boardId
   render() {
     if (!this.availableColumns.length) {
       return null;

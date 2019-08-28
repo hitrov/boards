@@ -4,6 +4,7 @@ import reducer, {RootState} from './reducers/index';
 import rootSaga from "./sagas";
 import createSagaMiddleware from 'redux-saga';
 
+// TODO: localStorage
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
 

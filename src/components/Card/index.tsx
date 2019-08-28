@@ -22,6 +22,7 @@ interface IProps {
   onCloseModal(): void;
 }
 
+// TODO: display column title, createdAt, updatedAt, deleteBtn
 const Card: React.FunctionComponent<IProps> =
   ({
      columns,

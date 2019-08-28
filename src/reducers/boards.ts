@@ -13,6 +13,7 @@ export interface IAddBoardAction extends IBasicAction {
   name: string;
 }
 
+// TODO: alias
 const boards = (state: Board[] = [], action: IAddBoardAction): Board[] => {
   switch (action.type) {
     case ADD_BOARD_SUCCESS:

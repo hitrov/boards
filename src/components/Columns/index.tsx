@@ -108,6 +108,7 @@ class Columns extends React.PureComponent<IProps, IState> {
     return this.state.renamingColumns.find(c => c.id === id) !== undefined;
   };
 
+  // TODO: glyphonicons
   render() {
     return (
       <Grid className='ah-columns'>
