@@ -4,6 +4,7 @@ import {
   addBoard,
 } from '../../actions';
 import {RootState} from '../../reducers';
+import './index.scss';
 
 const App = connect((state: RootState) => ({
   boards: state.boards,

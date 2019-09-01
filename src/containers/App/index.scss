@@ -1,0 +1,24 @@
+.ah-remove {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
+.ah-shape {
+  margin: 10px;
+  padding: 10px;
+  //border: 1px solid black;
+  border-radius: 5px;
+}
+
+.ah-modal-container {
+  .ah-remove {
+    right: unset;
+    left: 15px;
+    top: 15px
+  }
+}
+
+.ah-icon {
+  cursor: pointer;
+}

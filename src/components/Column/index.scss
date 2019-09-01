@@ -1,3 +1,8 @@
-.ah-is-over-column {
-  opacity: 0.8;
+.ah-column {
+  background-color: burlywood;
+  position: relative;
+
+  &.ah-is-over-column {
+    opacity: 0.8;
+  }
 }

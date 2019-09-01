@@ -124,7 +124,7 @@ class Columns extends React.PureComponent<IProps, IState> {
   // TODO: glyphonicons
   render() {
     return (
-      <Grid className='ah-columns'>
+      <Grid className='ah-columns ah-shape'>
         <h3 className='ah-error-message'>{this.props.errorMessage}</h3>
         <Row>
           <Col>

@@ -10,6 +10,8 @@ interface IProps {
   addBoard(): void;
 }
 
+// TODO: nav list
+
 const Boards = ({ boards, addBoard }: IProps) => {
   return (
     <DndProvider backend={HTML5Backend}>

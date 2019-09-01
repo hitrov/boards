@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from 'react';
 import { Column } from '../../reducers/columns';
 import CardWrapper from '../CardWrapper';
-import './index.scss';
+import { MoveToColumnOption } from '../MoveToCardSelect';
 
 interface IProps {
   columns: Column[];
@@ -47,14 +47,21 @@ class Cards extends React.PureComponent<IProps> {
     });
   };
 
+  getMoveToColumnsOptions = () => {
+    return this.props.columns.filter(c => c.id !== this.props.column.id).map(c => ({
+      id: c.id,
+      name: c.name,
+    } as MoveToColumnOption))
+  };
+
   render() {
     return (
-      <div className='ah-column'>
+      <div>
         {this.props.column.cards.map(card =>
           <CardWrapper
             key={card.id}
             card={card}
-            moveToColumnsOptions={this.props.columns.filter(c => c.id !== this.props.column.id)}
+            moveToColumnsOptions={this.getMoveToColumnsOptions()}
             column={this.props.column}
             moveCard={this.props.moveCard}
             removeCard={this.props.removeCard}

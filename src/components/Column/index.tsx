@@ -4,6 +4,7 @@ import CardsContainer from '../../containers/CardsContainer';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { ITEM_TYPES } from '../../constants';
 import './index.scss';
+import { MdModeEdit, MdDeleteForever, MdCheck, MdCancel } from "react-icons/md";
 
 interface IProps {
   column: ColumnItem;
@@ -64,37 +65,38 @@ const Column: React.FunctionComponent<IProps> =
     // console.log('canDrop', canDrop);
 
   return (
-    <div ref={drop} className={`${isOver ? 'ah-is-over-column' : ''}`}>
-      {column.name}
-
-      <button
-        onClick={onEditColumnClick(column.id)}
-      >
-        Edit
-      </button>
+    <div ref={drop} className={`ah-column ah-shape ${isOver ? 'ah-is-over-column' : ''}`}>
+      {!displayEditName(column.id) &&
+      <span className='ah-icon' onClick={onEditColumnClick(column.id)}>
+        {column.name}
+        <MdModeEdit />
+      </span>}
 
       {displayEditName(column.id) && <div>
           <input
-              onChange={onRenameColumnChange(column.id)}
-              value={getTemporaryNameStateValue(column.id)}
+            onChange={onRenameColumnChange(column.id)}
+            value={getTemporaryNameStateValue(column.id)}
           />
-          <button
-              onClick={onRenameColumnClick(column.id)}
+          <span
+            onClick={onRenameColumnClick(column.id)}
+            className='ah-icon'
           >
-              Rename
-          </button>
-          <button
-              onClick={onCancelRenameColumnClick(column.id)}
+            <MdCheck />
+          </span>
+          <span
+            onClick={onCancelRenameColumnClick(column.id)}
+            className='ah-icon'
           >
-              Cancel
-          </button>
+            <MdCancel />
+          </span>
       </div>}
 
-      <button
+      <span
         onClick={() => removeColumn(column.id)}
+        className='ah-remove ah-icon'
       >
-        X
-      </button>
+        <MdDeleteForever />
+      </span>
 
       <CardsContainer
         column={column}

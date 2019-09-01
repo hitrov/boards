@@ -23,16 +23,21 @@ interface IProps extends RouteComponentProps<RouteParams> {
 
 interface IState {
   description: string;
+  name: string;
+  inPlaceRenameInProgress: boolean;
 }
 
 class CardWrapper extends React.PureComponent<IProps, IState> {
   public readonly state: Readonly<IState> = {
     description: '',
+    name: '',
+    inPlaceRenameInProgress: false,
   };
 
   componentWillMount(): void {
     this.setState({
       description: this.props.card.description,
+      name: this.props.card.name,
     });
   }
 
@@ -47,8 +52,27 @@ class CardWrapper extends React.PureComponent<IProps, IState> {
     });
   };
 
+  onNameChange = (e: SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    this.setState({
+      name: target.value,
+    });
+  };
+
+  toggleInPlaceRename = () => {
+    this.setState(prevState => ({
+      inPlaceRenameInProgress: !prevState.inPlaceRenameInProgress,
+    }));
+  };
+
   onSaveDescriptionClick = () => {
     this.props.changeCardDescription(this.props.column.id, this.props.card.id, this.state.description);
+  };
+
+  onSaveNameClick = () => {
+    this.setState({
+      inPlaceRenameInProgress: false,
+    }, () => this.props.renameCard(this.props.column.id, this.props.card.id, this.state.name));
   };
 
   onRemoveCardClick = () => {
@@ -71,6 +95,11 @@ class CardWrapper extends React.PureComponent<IProps, IState> {
         onSaveDescriptionClick={this.onSaveDescriptionClick}
         renameCard={this.props.renameCard}
         setErrorMessage={this.props.setErrorMessage}
+        onNameChange={this.onNameChange}
+        onSaveNameClick={this.onSaveNameClick}
+        toggleInPlaceRename={this.toggleInPlaceRename}
+        inPlaceRenameInProgress={this.state.inPlaceRenameInProgress}
+        temporaryName={this.state.name}
       />
     )
   }
