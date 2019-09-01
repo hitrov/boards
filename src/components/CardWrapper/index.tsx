@@ -4,13 +4,14 @@ import { Card as CardItem } from '../../reducers/columns';
 import Card from '../Card';
 import { RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
+import { MoveToColumnOption } from '../MoveToCardSelect';
 
 interface RouteParams {
   cardId?: string;
 }
 
 interface IProps extends RouteComponentProps<RouteParams> {
-  columns: Column[];
+  moveToColumnsOptions: MoveToColumnOption[];
   column: Column;
   card: CardItem;
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
@@ -59,7 +60,7 @@ class CardWrapper extends React.PureComponent<IProps, IState> {
     return (
       <Card
         isModalOpened={this.props.match.params.cardId === this.props.card.id}
-        columns={this.props.columns}
+        moveToColumnsOptions={this.props.moveToColumnsOptions}
         column={this.props.column}
         card={this.props.card}
         moveCard={this.props.moveCard}

@@ -5,12 +5,12 @@ import { Card as CardItem } from '../../reducers/columns';
 import { useDrag } from 'react-dnd';
 import './index.scss';
 import { ITEM_TYPES } from '../../constants';
-import MoveToCardSelect from '../MoveToCardSelect';
+import MoveToCardSelect, { MoveToColumnOption } from '../MoveToCardSelect';
 import { Link } from 'react-router-dom';
 import RenameCardInColumn from '../RenameCardInColumn';
 
 interface IProps {
-  columns: Column[];
+  moveToColumnsOptions: MoveToColumnOption[];
   column: Column;
   card: CardItem;
   isModalOpened: boolean;
@@ -30,7 +30,7 @@ interface IProps {
 
 const Card: React.FunctionComponent<IProps> =
   ({
-     columns,
+     moveToColumnsOptions,
      column,
      card,
      moveCard,
@@ -59,6 +59,7 @@ const Card: React.FunctionComponent<IProps> =
     const DeleteCard = (
       <button
         onClick={onRemoveCardClick}
+        className='ah-delete-card'
       >
         X
       </button>
@@ -94,7 +95,7 @@ const Card: React.FunctionComponent<IProps> =
           </div>
 
           <MoveToCardSelect
-            columns={columns}
+            moveToColumnsOptions={moveToColumnsOptions}
             column={column}
             card={card}
             moveCard={moveCard}

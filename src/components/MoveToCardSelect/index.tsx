@@ -2,8 +2,13 @@ import React, { SyntheticEvent } from 'react';
 import { Column } from '../../reducers/columns';
 import { Card as CardItem } from '../../reducers/columns';
 
+export interface MoveToColumnOption {
+  id: string;
+  name: string;
+}
+
 interface IProps {
-  columns: Column[];
+  moveToColumnsOptions: MoveToColumnOption[];
   column: Column;
   card: CardItem;
 
@@ -19,15 +24,10 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
     moveToCardId: '',
   };
 
-  availableColumns: Column[] = [];
-
   componentWillMount(): void {
-    this.availableColumns = this.props.columns
-      .filter(c => c.id !== this.props.column.id);
-
-    if (this.availableColumns.length) {
+    if (this.props.moveToColumnsOptions.length) {
       this.setState({
-        moveToCardId: this.availableColumns[0].id,
+        moveToCardId: this.props.moveToColumnsOptions[0].id,
       })
     }
   }
@@ -46,7 +46,7 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
 
   // TODO: filter by boardId
   render() {
-    if (!this.availableColumns.length) {
+    if (!this.props.moveToColumnsOptions.length) {
       return null;
     }
 
@@ -56,7 +56,7 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
             onChange={this.onMoveToCardChange}
             value={this.state.moveToCardId}
           >
-            {this.availableColumns.map(c =>
+            {this.props.moveToColumnsOptions.map(c =>
               <option key={c.id} value={c.id}>{c.name}</option>
             )}
           </select>

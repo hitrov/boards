@@ -128,8 +128,11 @@ class Columns extends React.PureComponent<IProps, IState> {
         <h3 className='ah-error-message'>{this.props.errorMessage}</h3>
         <Row>
           <Col>
-            Name:
-            <input onChange={this.onAddColumnNameChange} value={this.state.name} />
+            <input
+              onChange={this.onAddColumnNameChange}
+              value={this.state.name}
+              placeholder='Name'
+            />
             <button
               onClick={this.onAddColumn}
             >

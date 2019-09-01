@@ -50,21 +50,11 @@ class Cards extends React.PureComponent<IProps> {
   render() {
     return (
       <div className='ah-column'>
-        <div>
-          Name:
-          <input onChange={this.onAddCardNameChange} value={this.state.name} />
-          <button
-            onClick={this.onAddCardClick}
-          >
-            Add card
-          </button>
-        </div>
-
         {this.props.column.cards.map(card =>
           <CardWrapper
             key={card.id}
             card={card}
-            columns={this.props.columns}
+            moveToColumnsOptions={this.props.columns.filter(c => c.id !== this.props.column.id)}
             column={this.props.column}
             moveCard={this.props.moveCard}
             removeCard={this.props.removeCard}
@@ -72,6 +62,20 @@ class Cards extends React.PureComponent<IProps> {
             setErrorMessage={this.props.setErrorMessage}
             renameCard={this.props.renameCard}
           />)}
+
+        <div>
+          <input
+            onChange={this.onAddCardNameChange}
+            value={this.state.name}
+            placeholder='Name'
+          />
+          <button
+            onClick={this.onAddCardClick}
+          >
+            Add card
+          </button>
+        </div>
+
       </div>
     );
   }

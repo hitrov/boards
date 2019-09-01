@@ -102,7 +102,6 @@ const mockState: RootState = {
   errorMessage: '',
 };
 
-// TODO: localStorage
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
 
