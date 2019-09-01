@@ -20,7 +20,7 @@ interface IState {
   name: string;
 }
 
-// TODO: rename card separate component
+// TODO: escape/enter onkeyup
 class Cards extends React.PureComponent<IProps> {
   public readonly state: Readonly<IState> = {
     name: '',
