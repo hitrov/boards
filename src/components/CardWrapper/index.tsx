@@ -84,7 +84,6 @@ class CardWrapper extends React.PureComponent<IProps, IState> {
     this.props.removeCard(this.props.column.id, this.props.card.id);
   };
 
-  // TODO: handle not found card
   render() {
     return (
       <Card

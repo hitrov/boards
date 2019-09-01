@@ -3,9 +3,11 @@ import Column from '../Column';
 import { Column as ColumnItem } from '../../reducers/columns';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import './index.scss';
+import { Redirect } from 'react-router';
 
 interface IProps {
   boardId: string;
+  cardId?: string;
   errorMessage: string;
   columns: ColumnItem[];
 
@@ -125,7 +127,28 @@ class Columns extends React.PureComponent<IProps, IState> {
     return this.state.renamingColumns.find(c => c.id === id) !== undefined;
   };
 
+  cardExists = (): boolean => {
+    let cardExists = false;
+    const { columns, cardId } = this.props;
+    if (!cardId) {
+      return true;
+
+    }
+    columns.forEach(column => {
+      const card = column.cards.find(c => c.id === cardId);
+      if (card) {
+        cardExists = true;
+      }
+    });
+
+    return cardExists;
+  };
+
   render() {
+    if (!this.cardExists()) {
+      return <Redirect to={`/boards/${this.props.boardId}/cards`} />
+    }
+
     return (
       <Grid className='ah-columns ah-shape'>
         <h3 className='ah-error-message'>{this.props.errorMessage}</h3>

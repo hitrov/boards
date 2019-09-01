@@ -8,6 +8,7 @@ import { addColumn, moveCard, removeColumn, renameColumn, setErrorMessage } from
 
 interface RouteParams {
   boardId: string;
+  cardId?: string;
 }
 
 interface IProps extends RouteComponentProps<RouteParams> {
@@ -45,6 +46,7 @@ const BoardContainer: React.FunctionComponent<IProps> =
       moveCard={moveCard}
       errorMessage={errorMessage}
       setErrorMessage={setErrorMessage}
+      cardId={match.params.cardId}
     />
   );
 

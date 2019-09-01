@@ -29,10 +29,8 @@ const BoardsContainer = ({boards, addBoard}: IProps) => {
       <button
         onClick={addBoard}
       >
-        Add test board
+        Add board
       </button>
-
-      <button onClick={() => localStorage.clear()}>localStorage.clear()</button>
     </div>
   );
 };
