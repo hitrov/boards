@@ -151,7 +151,11 @@ class Columns extends React.PureComponent<IProps, IState> {
 
     return (
       <Grid className='ah-columns ah-shape'>
-        <h3 className='ah-error-message'>{this.props.errorMessage}</h3>
+        {!!this.props.errorMessage &&
+        <div>
+          <span className='ah-error-message'>{this.props.errorMessage}</span>
+          <button onClick={() => this.props.setErrorMessage('')}>Dismiss</button>
+        </div>}
         <Row center={'xs'} className='add-column-wrapper'>
           <Col>
             <input
