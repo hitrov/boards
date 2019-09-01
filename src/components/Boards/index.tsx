@@ -1,9 +1,11 @@
 import React from 'react';
 import { Board as BoardItem } from '../../reducers/boards';
-import { DndProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend';
-import { Switch, Route, Link } from 'react-router-dom';
-import Board from '../Board';
+import { Link, Route } from 'react-router-dom';
+import {connect} from 'react-redux';
+import { RootState } from '../../reducers';
+import {
+  addBoard,
+} from '../../actions';
 
 interface IProps {
   boards: BoardItem[];
@@ -11,36 +13,31 @@ interface IProps {
 }
 
 // TODO: nav list
-
 const Boards = ({ boards, addBoard }: IProps) => {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <Switch>
-        <Route exact path="/" component={() => (
-          <div>
-            <h1>Boards</h1>
+    <div>
+      <h1>Boards</h1>
 
-            <ul>
-              {boards.map(b =>
-                <li key={b.id}>
-                  <Link to={`/boards/${b.id}/cards`}>{b.name}</Link>
-                </li>)}
-            </ul>
+      <ul>
+        {boards.map(b =>
+          <li key={b.id}>
+            <Link to={`/boards/${b.id}/cards`}>{b.name}</Link>
+          </li>)}
+      </ul>
 
-            <button
-              onClick={addBoard}
-            >
-              Add test board
-            </button>
+      <button
+        onClick={addBoard}
+      >
+        Add test board
+      </button>
 
-            <button onClick={() => localStorage.clear()}>localStorage.clear()</button>
-          </div>
-        )} />
-        <Route path="/boards/:boardId/cards/:cardId?" component={Board}/>
-        <Route component={() => <h1>404 Not Found</h1>}/>
-      </Switch>
-    </DndProvider>
+      <button onClick={() => localStorage.clear()}>localStorage.clear()</button>
+    </div>
   );
 };
 
-export default Boards;
+export default connect((state: RootState) => ({
+  boards: state.boards,
+}), {
+  addBoard,
+})(Boards);
