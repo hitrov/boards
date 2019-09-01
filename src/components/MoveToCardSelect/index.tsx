@@ -63,7 +63,7 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
           <button
               onClick={this.onMoveCardClick}
           >
-              Move card
+              Move to column
           </button>
         </div>
     );

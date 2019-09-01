@@ -2,3 +2,31 @@
   background-color: antiquewhite;
   position: relative;
 }
+
+.ah-modal-container {
+  min-width: 200px;
+
+  .ah-time {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .ah-in-place-rename-input {
+    margin-top: 21px;
+    margin-bottom: 21px;
+  }
+
+  .ah-card-description {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  &, .ah-card-description {
+    border-radius: 5px;
+  }
+
+  .ah-card-save {
+    display: block;
+    margin: 0 auto;
+  }
+}
