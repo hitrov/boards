@@ -22,6 +22,7 @@ interface IState {
   }[],
 }
 
+// TODO: rename card separate component
 class Cards extends React.PureComponent<IProps, IState> {
   public readonly state: Readonly<IState> = {
     name: '',

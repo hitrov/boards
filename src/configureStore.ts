@@ -4,6 +4,7 @@ import reducer, {RootState} from './reducers/index';
 import rootSaga from "./sagas";
 import createSagaMiddleware from 'redux-saga';
 import { loadState, saveState } from './localStorage';
+import throttle from 'lodash/throttle';
 
 const mockState: RootState = {
   boards: [
@@ -125,9 +126,9 @@ const configureStore = () => {
     applyMiddleware(...middlewares)
   ) as Store<RootState>;
 
-  store.subscribe(() => {
+  store.subscribe(throttle(() => {
     saveState(store.getState());
-  });
+  }));
 
   sagaMiddleware.run(rootSaga);
 

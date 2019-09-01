@@ -3,6 +3,7 @@ import { Column as ColumnItem } from '../../reducers/columns';
 import CardsContainer from '../../containers/CardsContainer';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { ITEM_TYPES } from '../../constants';
+import './index.scss';
 
 interface IProps {
   column: ColumnItem;
@@ -60,11 +61,10 @@ const Column: React.FunctionComponent<IProps> =
       }),
     });
 
-    // console.log('isOver', isOver);
     // console.log('canDrop', canDrop);
 
   return (
-    <div ref={drop}>
+    <div ref={drop} className={`${isOver ? 'ah-is-over-column' : ''}`}>
       {column.name}
 
       <button
