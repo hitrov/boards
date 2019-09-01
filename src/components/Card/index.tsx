@@ -120,8 +120,8 @@ const Card: React.FunctionComponent<IProps> =
           {inPlaceRenameInProgress &&
           <>
             <input className='ah-in-place-rename-input' type="text" onChange={onNameChange} value={temporaryName} />
-            <span onClick={onSaveNameClick}><MdCheck /></span>
-            <span onClick={toggleInPlaceRename}><MdCancel /></span>
+            <span className='ah-icon' onClick={onSaveNameClick}><MdCheck /></span>
+            <span className='ah-icon' onClick={toggleInPlaceRename}><MdCancel /></span>
           </>}
 
           <div>

@@ -7,7 +7,6 @@
 .ah-shape {
   margin: 10px;
   padding: 10px;
-  //border: 1px solid black;
   border-radius: 5px;
 }
 
@@ -15,10 +14,12 @@
   .ah-remove {
     right: unset;
     left: 15px;
-    top: 15px
+    top: 15px;
   }
 }
 
 .ah-icon {
   cursor: pointer;
+  font-size: 20px;
+  vertical-align: middle;
 }

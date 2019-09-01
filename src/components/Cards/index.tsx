@@ -3,6 +3,7 @@ import { Column } from '../../reducers/columns';
 import CardWrapper from '../CardWrapper';
 import { MoveToColumnOption } from '../MoveToCardSelect';
 import './index.scss';
+import { MdNoteAdd } from 'react-icons/md';
 
 interface IProps {
   columns: Column[];
@@ -77,13 +78,14 @@ class Cards extends React.PureComponent<IProps> {
           <input
             onChange={this.onAddCardNameChange}
             value={this.state.name}
-            placeholder='Name'
+            placeholder='New card name'
           />
-          <button
+          <span
             onClick={this.onAddCardClick}
+            className='ah-icon'
           >
-            Add card
-          </button>
+            <MdNoteAdd />
+          </span>
         </div>
 
       </div>
