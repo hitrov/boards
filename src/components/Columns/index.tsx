@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import Column from '../Column';
 import { Column as ColumnItem } from '../../reducers/columns';
 import { Grid, Row, Col } from 'react-flexbox-grid';
@@ -28,16 +28,16 @@ class Columns extends React.PureComponent<IProps, IState> {
     renamingColumns: [],
   };
 
-  onAddColumnNameChange = (e: any) => {
-    const name = e.target.value;
+  onAddColumnNameChange = (e: SyntheticEvent) => {
+    const name = (e.target as HTMLInputElement).value;
 
     this.setState({
       name,
     });
   };
 
-  onRenameColumnChange = (id: string) => (e: any) => {
-    const newName = e.target.value;
+  onRenameColumnChange = (id: string) => (e: SyntheticEvent) => {
+    const newName = (e.target as HTMLInputElement).value;
 
     this.setState(prevState => ({
       renamingColumns: [

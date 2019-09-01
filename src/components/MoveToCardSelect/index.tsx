@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Column } from '../../reducers/columns';
 import { Card as CardItem } from '../../reducers/columns';
 
@@ -32,14 +32,12 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
     }
   }
 
-  // TODO: props.history.push
   onMoveCardClick = () => {
-    console.log(this.props);
     this.props.moveCard(this.props.column.id, this.state.moveToCardId, this.props.card.id);
   };
 
-  onMoveToCardChange = (e: any) => {
-    const moveToCardId = e.target.value;
+  onMoveToCardChange = (e: SyntheticEvent) => {
+    const moveToCardId = (e.target as HTMLSelectElement).value;
 
     this.setState({
       moveToCardId,

@@ -49,6 +49,10 @@ class CardWrapper extends React.PureComponent<IProps, IState> {
     this.props.changeCardDescription(this.props.column.id, this.props.card.id, this.state.description);
   };
 
+  onRemoveCardClick = () => {
+    this.props.removeCard(this.props.column.id, this.props.card.id);
+  };
+
   // TODO: handle not found card
   render() {
     return (
@@ -58,7 +62,7 @@ class CardWrapper extends React.PureComponent<IProps, IState> {
         column={this.props.column}
         card={this.props.card}
         moveCard={this.props.moveCard}
-        removeCard={this.props.removeCard}
+        onRemoveCardClick={this.onRemoveCardClick}
         onCloseModal={this.onCloseModal}
         onDescriptionChange={this.onDescriptionChange}
         description={this.state.description}

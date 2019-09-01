@@ -18,14 +18,14 @@ interface IProps {
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
 
   // renameCard(columnId: number, id: string, name: string): void;
-  removeCard(columnId: string, id: string): void;
+  onRemoveCardClick(): void;
 
   onCloseModal(): void;
   onDescriptionChange(e: SyntheticEvent): void;
   onSaveDescriptionClick(): void;
 }
 
-// TODO: display column title, createdAt, updatedAt, deleteBtn
+// TODO: display column title
 const Card: React.FunctionComponent<IProps> =
   ({
      columns,
@@ -38,6 +38,7 @@ const Card: React.FunctionComponent<IProps> =
      onDescriptionChange,
      description,
      onSaveDescriptionClick,
+     onRemoveCardClick,
    }) => {
     const [{
       isDragging,
@@ -81,6 +82,8 @@ const Card: React.FunctionComponent<IProps> =
 
           <textarea onChange={onDescriptionChange} value={description} />
           <button onClick={onSaveDescriptionClick}>Save</button>
+
+          <button onClick={onRemoveCardClick}>Delete</button>
 
         </Modal>
 

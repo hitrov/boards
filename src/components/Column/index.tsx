@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Column as ColumnItem } from '../../reducers/columns';
 import CardsContainer from '../../containers/CardsContainer';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
@@ -12,7 +12,7 @@ interface IProps {
   removeColumn(id: string): void;
 
   onEditColumnClick(id: string): () => void;
-  onRenameColumnChange(id: string): (e: any) => void;
+  onRenameColumnChange(id: string): (e: SyntheticEvent) => void;
   displayEditName(id: string): boolean;
   getTemporaryNameStateValue(id: string): string;
   onRenameColumnClick(id: string): () => void;

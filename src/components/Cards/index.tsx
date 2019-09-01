@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Column } from '../../reducers/columns';
 import CardWrapper from '../CardWrapper';
 import './index.scss';
@@ -27,16 +27,16 @@ class Cards extends React.PureComponent<IProps, IState> {
     renamingCards: [],
   };
 
-  onAddCardNameChange = (e: any) => {
-    const name = e.target.value;
+  onAddCardNameChange = (e: SyntheticEvent) => {
+    const name = (e.target as HTMLInputElement).value;
 
     this.setState({
       name,
     });
   };
 
-  onRenameCardChange = (id: string) => (e: any) => {
-    const newName = e.target.value;
+  onRenameCardChange = (id: string) => (e: SyntheticEvent) => {
+    const newName = (e.target as HTMLInputElement).value;
 
     this.setState(prevState => ({
       renamingCards: [
