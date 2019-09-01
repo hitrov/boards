@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Column } from '../../reducers/columns';
 import Modal from 'react-responsive-modal';
 import { Card as CardItem } from '../../reducers/columns';
@@ -13,6 +13,7 @@ interface IProps {
   column: Column;
   card: CardItem;
   isModalOpened: boolean;
+  description: string;
 
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
 
@@ -20,6 +21,8 @@ interface IProps {
   removeCard(columnId: string, id: string): void;
 
   onCloseModal(): void;
+  onDescriptionChange(e: SyntheticEvent): void;
+  onSaveDescriptionClick(): void;
 }
 
 // TODO: display column title, createdAt, updatedAt, deleteBtn
@@ -32,6 +35,9 @@ const Card: React.FunctionComponent<IProps> =
      moveCard,
      onCloseModal,
      isModalOpened,
+     onDescriptionChange,
+     description,
+     onSaveDescriptionClick,
    }) => {
     const [{
       isDragging,
@@ -65,6 +71,9 @@ const Card: React.FunctionComponent<IProps> =
             card={card}
             moveCard={moveCard}
           />
+
+          <textarea onChange={onDescriptionChange} value={description} />
+          <button onClick={onSaveDescriptionClick}>Save</button>
 
         </Modal>
 

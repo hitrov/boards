@@ -10,6 +10,7 @@ interface IProps {
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
   renameCard(columnId: string, id: string, name: string): void;
   removeCard(columnId: string, id: string): void;
+  changeCardDescription(columnId: string, id: string, description: string): void;
 }
 
 interface IState {
@@ -119,46 +120,45 @@ class Cards extends React.PureComponent<IProps, IState> {
           </button>
         </div>
 
-        <div>
-          {this.props.column.cards.map(card =>
-            <CardWrapper
-              key={card.id}
-              card={card}
-              columns={this.props.columns}
-              column={this.props.column}
-              moveCard={this.props.moveCard}
-              removeCard={this.props.removeCard}
+        {this.props.column.cards.map(card =>
+          <CardWrapper
+            key={card.id}
+            card={card}
+            columns={this.props.columns}
+            column={this.props.column}
+            moveCard={this.props.moveCard}
+            removeCard={this.props.removeCard}
+            changeCardDescription={this.props.changeCardDescription}
+          >
+            <button
+              onClick={this.onEditCardClick(card.id)}
             >
-              <button
-                onClick={this.onEditCardClick(card.id)}
-              >
-                Edit card
-              </button>
+              Edit card
+            </button>
 
-              {this.displayEditName(card.id) && <div>
+            {this.displayEditName(card.id) && <div>
                 <input
-                  onChange={this.onRenameCardChange(card.id)}
-                  value={this.getTemporaryNameStateValue(card.id)}
+                    onChange={this.onRenameCardChange(card.id)}
+                    value={this.getTemporaryNameStateValue(card.id)}
                 />
                 <button
-                  onClick={this.onRenameCardClick(card.id)}
+                    onClick={this.onRenameCardClick(card.id)}
                 >
-                  Rename card
+                    Rename card
                 </button>
                 <button
-                  onClick={this.onCancelRenameCardClick(card.id)}
+                    onClick={this.onCancelRenameCardClick(card.id)}
                 >
-                  Cancel rename card
+                    Cancel rename card
                 </button>
-              </div>}
+            </div>}
 
-              <button
-                onClick={() => this.props.removeCard(this.props.column.id, card.id)}
-              >
-                X
-              </button>
-            </CardWrapper>)}
-        </div>
+            <button
+              onClick={() => this.props.removeCard(this.props.column.id, card.id)}
+            >
+              X
+            </button>
+          </CardWrapper>)}
       </div>
     );
   }

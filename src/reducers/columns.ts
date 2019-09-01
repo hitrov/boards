@@ -1,6 +1,7 @@
 import {
   ADD_CARD,
   ADD_COLUMN,
+  CHANGE_CARD_DESCRIPTION,
   MOVE_CARD,
   REMOVE_CARD,
   REMOVE_COLUMN,
@@ -11,7 +12,9 @@ import {
 export interface Card {
   id: string
   name: string;
-  description?: string;
+  description: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Column {
@@ -44,6 +47,7 @@ export interface IAddCardAction {
   id: string;
   columnId: string;
   name: string;
+  createdAt: string;
 }
 
 export interface IRenameCardAction {
@@ -51,6 +55,7 @@ export interface IRenameCardAction {
   columnId: string;
   id: string;
   name: string;
+  updatedAt: string;
 }
 
 export interface IMoveCardAction {
@@ -58,6 +63,7 @@ export interface IMoveCardAction {
   fromColumnId: string;
   toColumnId: string;
   id: string;
+  updatedAt: string;
 }
 
 export interface IRemoveCardAction {
@@ -66,8 +72,16 @@ export interface IRemoveCardAction {
   id: string;
 }
 
+export interface IChangeCardDescription {
+  type: typeof CHANGE_CARD_DESCRIPTION;
+  columnId: string;
+  id: string;
+  description: string;
+  updatedAt: string;
+}
+
 type ActionTypes = IAddColumnAction | IRenameColumnAction | IRemoveColumnAction |
-  IAddCardAction | IRenameCardAction | IRemoveCardAction | IMoveCardAction;
+  IAddCardAction | IRenameCardAction | IRemoveCardAction | IMoveCardAction | IChangeCardDescription;
 
 const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
   switch (action.type) {
@@ -98,6 +112,7 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
             {
               id: action.id,
               name: action.name,
+              description: '',
             }
           ],
         }
@@ -134,6 +149,27 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
             return {
               ...c,
               name: action.name,
+            };
+          }),
+        }
+      });
+
+    case CHANGE_CARD_DESCRIPTION:
+      return state.map(column => {
+        if (column.id !== action.columnId) {
+          return column;
+        }
+
+        return {
+          ...column,
+          cards: column.cards.map(card => {
+            if (card.id !== action.id) {
+              return card;
+            }
+
+            return {
+              ...card,
+              description: action.description,
             };
           }),
         }

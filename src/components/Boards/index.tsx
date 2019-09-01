@@ -30,6 +30,8 @@ const Boards = ({ boards, addBoard }: IProps) => {
             >
               Add test board
             </button>
+
+            <button onClick={() => localStorage.clear()}>localStorage.clear()</button>
           </div>
         )} />
         <Route path="/boards/:boardId/cards/:cardId?" component={Board}/>

@@ -21,14 +21,17 @@ const mockState: RootState = {
         {
           id: '1',
           name: 'a1',
+          description: 'a1 description goes here',
         },
         {
           id: '2',
           name: 'a2',
+          description: 'a2 description goes here',
         },
         {
           id: '3',
           name: 'a3',
+          description: 'a3 description goes here',
         },
       ],
     },
@@ -40,14 +43,17 @@ const mockState: RootState = {
         {
           id: '4',
           name: 'b1',
+          description: 'b1 description goes here',
         },
         {
           id: '5',
           name: 'b2',
+          description: 'b2 description goes here',
         },
         {
           id: '6',
           name: 'b3',
+          description: 'b3 description goes here',
         },
       ],
     },
@@ -59,14 +65,17 @@ const mockState: RootState = {
         {
           id: '7',
           name: 'c1',
+          description: 'c1 description goes here',
         },
         {
           id: '8',
           name: 'c2',
+          description: 'c2 description goes here',
         },
         {
           id: '9',
           name: 'c3',
+          description: 'c3 description goes here',
         },
       ],
     },

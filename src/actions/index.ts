@@ -1,16 +1,18 @@
 import {
   ADD_BOARD_REQUEST,
-  ADD_COLUMN,
   ADD_CARD,
+  ADD_COLUMN,
+  CHANGE_CARD_DESCRIPTION,
   MOVE_CARD,
   REMOVE_CARD,
-  RENAME_COLUMN,
   REMOVE_COLUMN,
   RENAME_CARD,
+  RENAME_COLUMN,
 } from '../constants';
 import {
   IAddCardAction,
   IAddColumnAction,
+  IChangeCardDescription,
   IMoveCardAction,
   IRemoveCardAction,
   IRemoveColumnAction,
@@ -68,6 +70,14 @@ const removeCard = (columnId: string, id: string) => ({
   id,
 } as IRemoveCardAction);
 
+const changeCardDescription = (columnId: string, id: string, description: string) => ({
+  type: CHANGE_CARD_DESCRIPTION,
+  columnId,
+  id,
+  description,
+  updatedAt: new Date().toJSON(),
+} as IChangeCardDescription);
+
 export {
   addBoard,
   addColumn,
@@ -77,4 +87,5 @@ export {
   moveCard,
   renameCard,
   removeCard,
+  changeCardDescription,
 };
