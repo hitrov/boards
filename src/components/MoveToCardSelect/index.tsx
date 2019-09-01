@@ -44,7 +44,6 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
     });
   };
 
-  // TODO: filter by boardId
   render() {
     if (!this.props.moveToColumnsOptions.length) {
       return null;

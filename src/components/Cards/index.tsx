@@ -49,9 +49,11 @@ class Cards extends React.PureComponent<IProps> {
   };
 
   getMoveToColumnsOptions = () => {
-    return this.props.columns.filter(c => c.id !== this.props.column.id).map(c => ({
-      id: c.id,
-      name: c.name,
+    return this.props.columns
+      .filter(c => c.id !== this.props.column.id && c.boardId === this.props.column.boardId)
+      .map(c => ({
+        id: c.id,
+        name: c.name,
     } as MoveToColumnOption))
   };
 
