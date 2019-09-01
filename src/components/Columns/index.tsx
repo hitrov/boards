@@ -22,12 +22,14 @@ interface IProps {
   setErrorMessage(message: string): void;
 }
 
+export interface RenamingColumn {
+  id: string;
+  name: string;
+}
+
 interface IState {
   name: string;
-  renamingColumns: {
-    id: string;
-    name: string;
-  }[],
+  renamingColumns: RenamingColumn[],
 }
 
 class Columns extends React.PureComponent<IProps, IState> {
@@ -123,10 +125,6 @@ class Columns extends React.PureComponent<IProps, IState> {
     return column.name;
   };
 
-  displayEditName = (id: string): boolean => {
-    return this.state.renamingColumns.find(c => c.id === id) !== undefined;
-  };
-
   cardExists = (): boolean => {
     let cardExists = false;
     const { columns, cardId } = this.props;
@@ -177,7 +175,7 @@ class Columns extends React.PureComponent<IProps, IState> {
               <Column
                 column={column}
                 addColumn={this.props.addColumn}
-                displayEditName={this.displayEditName}
+                renamingColumns={this.state.renamingColumns}
                 getTemporaryNameStateValue={this.getTemporaryNameStateValue}
                 onCancelRenameColumnClick={this.onCancelRenameColumnClick}
                 onEditColumnClick={this.onEditColumnClick}
