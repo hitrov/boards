@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <DndProvider backend={HTML5Backend}>
         <Switch>
-          <Route exact path="/" component={Boards} />
+          <Route exact path="/" component={Boards}/>
           <Route path="/boards/:boardId/cards/:cardId?" component={Board}/>
           <Route component={() => <h1>404 Not Found</h1>}/>
         </Switch>

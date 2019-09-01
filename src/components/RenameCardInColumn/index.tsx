@@ -1,12 +1,14 @@
 import React, { PureComponent, SyntheticEvent } from 'react';
 import { Card, Column } from '../../reducers/columns';
-import { MdModeEdit, MdCheck, MdCancel } from "react-icons/md";
+import { MdModeEdit, MdCheck, MdCancel } from 'react-icons/md';
 import './index.scss';
 
 interface IProps {
   column: Column;
   card: Card;
+
   renameCard(columnId: string, id: string, name: string): void;
+
   setErrorMessage(message: string): void;
 }
 
@@ -94,31 +96,31 @@ class RenameCardInColumn extends PureComponent<IProps, IState> {
   };
 
   render() {
-    const { card } = this.props;
+    const {card} = this.props;
 
     return (
       <div>
         <span className='ah-icon' onClick={this.onEditCardClick(card.id)}>
-          <MdModeEdit />
+          <MdModeEdit/>
         </span>
 
         {this.displayEditName(card.id) && <div>
-          <input
-            className='rename-card-in-column-input'
-            onChange={this.onRenameCardChange(card.id)}
-            value={this.getTemporaryNameStateValue(card.id)}
-          />
-          <span
-            onClick={this.onRenameCardClick(card.id)}
-            className='ah-icon'
-          >
-            <MdCheck />
+            <input
+                className='rename-card-in-column-input'
+                onChange={this.onRenameCardChange(card.id)}
+                value={this.getTemporaryNameStateValue(card.id)}
+            />
+            <span
+                onClick={this.onRenameCardClick(card.id)}
+                className='ah-icon'
+            >
+            <MdCheck/>
           </span>
-          <span
-            onClick={this.onCancelRenameCardClick(card.id)}
-            className='ah-icon'
-          >
-            <MdCancel />
+            <span
+                onClick={this.onCancelRenameCardClick(card.id)}
+                className='ah-icon'
+            >
+            <MdCancel/>
           </span>
         </div>}
       </div>

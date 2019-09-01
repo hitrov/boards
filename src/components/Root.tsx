@@ -1,8 +1,8 @@
 import React from 'react';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import App from '../containers/App';
-import {Store} from 'redux';
-import {BrowserRouter} from 'react-router-dom';
+import { Store } from 'redux';
+import { BrowserRouter } from 'react-router-dom';
 
 interface IProps {
   store: Store;
@@ -11,7 +11,7 @@ interface IProps {
 const Root = ({store}: IProps) => (
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <App/>
     </BrowserRouter>
   </Provider>
 );

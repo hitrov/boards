@@ -14,10 +14,15 @@ interface IProps extends RouteComponentProps<RouteParams> {
   moveToColumnsOptions: MoveToColumnOption[];
   column: Column;
   card: CardItem;
+
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
+
   removeCard(columnId: string, id: string): void;
+
   changeCardDescription(columnId: string, id: string, description: string): void;
+
   setErrorMessage(message: string): void;
+
   renameCard(columnId: string, id: string, name: string): void;
 }
 

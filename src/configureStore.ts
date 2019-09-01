@@ -1,7 +1,7 @@
-import {createStore, applyMiddleware, Store, Middleware} from 'redux';
-import {createLogger} from 'redux-logger';
-import reducer, {RootState} from './reducers/index';
-import rootSaga from "./sagas";
+import { createStore, applyMiddleware, Store, Middleware } from 'redux';
+import { createLogger } from 'redux-logger';
+import reducer, { RootState } from './reducers/index';
+import rootSaga from './sagas';
 import createSagaMiddleware from 'redux-saga';
 import { loadState, saveState } from './localStorage';
 import throttle from 'lodash/throttle';

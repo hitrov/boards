@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import boards, { Board } from './boards';
 import columns, { Column } from './columns';
 import errorMessage from './errorMessage';

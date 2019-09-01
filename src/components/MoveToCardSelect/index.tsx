@@ -50,21 +50,21 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
     }
 
     return (
-        <div>
-          <select
-            onChange={this.onMoveToCardChange}
-            value={this.state.moveToCardId}
-          >
-            {this.props.moveToColumnsOptions.map(c =>
-              <option key={c.id} value={c.id}>{c.name}</option>
-            )}
-          </select>
-          <button
-              onClick={this.onMoveCardClick}
-          >
-              Move to column
-          </button>
-        </div>
+      <div>
+        <select
+          onChange={this.onMoveToCardChange}
+          value={this.state.moveToCardId}
+        >
+          {this.props.moveToColumnsOptions.map(c =>
+            <option key={c.id} value={c.id}>{c.name}</option>
+          )}
+        </select>
+        <button
+          onClick={this.onMoveCardClick}
+        >
+          Move to column
+        </button>
+      </div>
     );
   }
 }

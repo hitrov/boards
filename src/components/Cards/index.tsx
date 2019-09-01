@@ -8,11 +8,17 @@ import { MdNoteAdd } from 'react-icons/md';
 interface IProps {
   columns: Column[];
   column: Column;
+
   addCard(columnId: string, name: string): void;
+
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
+
   renameCard(columnId: string, id: string, name: string): void;
+
   removeCard(columnId: string, id: string): void;
+
   changeCardDescription(columnId: string, id: string, description: string): void;
+
   setErrorMessage(message: string): void;
 }
 
@@ -55,7 +61,7 @@ class Cards extends React.PureComponent<IProps> {
       .map(c => ({
         id: c.id,
         name: c.name,
-    } as MoveToColumnOption))
+      } as MoveToColumnOption))
   };
 
   render() {
@@ -84,7 +90,7 @@ class Cards extends React.PureComponent<IProps> {
             onClick={this.onAddCardClick}
             className='ah-icon'
           >
-            <MdNoteAdd />
+            <MdNoteAdd/>
           </span>
         </div>
 

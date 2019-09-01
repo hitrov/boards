@@ -17,7 +17,7 @@ export interface IClearErrorMessageAction {
 }
 
 type ActionTypes = ISetErrorMessageAction | IClearErrorMessageAction |
-  {type: typeof ADD_COLUMN} | {type: typeof ADD_CARD} | {type: typeof RENAME_CARD};
+  { type: typeof ADD_COLUMN } | { type: typeof ADD_CARD } | { type: typeof RENAME_CARD };
 
 const errorMessage = (state = '', action: ActionTypes): string => {
   switch (action.type) {

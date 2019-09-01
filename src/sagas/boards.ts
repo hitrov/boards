@@ -2,7 +2,7 @@ import {
   ADD_BOARD_REQUEST,
   ADD_BOARD_SUCCESS,
 } from '../constants';
-import {put, takeLatest} from "redux-saga/effects";
+import { put, takeLatest } from 'redux-saga/effects';
 import { IAddBoardAction } from '../reducers/boards';
 import uuidv4 from 'uuid/v4';
 

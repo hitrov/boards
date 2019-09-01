@@ -10,9 +10,13 @@ interface IProps {
   columns: ColumnItem[];
 
   addColumn(name: string, boardId: string): void;
+
   renameColumn(id: string, name: string): void;
+
   removeColumn(id: string): void;
+
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
+
   setErrorMessage(message: string): void;
 }
 
@@ -96,7 +100,7 @@ class Columns extends React.PureComponent<IProps, IState> {
   };
 
   onAddColumn = () => {
-    const { name } = this.state;
+    const {name} = this.state;
     if (name === '') {
       this.props.setErrorMessage('Column name is required.');
       return;
