@@ -65,6 +65,13 @@ const Card: React.FunctionComponent<IProps> =
         >
           {card.name}
 
+          <div>
+            cr: {new Date(card.createdAt).toLocaleString()}
+          </div>
+          <div>
+            upd: {new Date(card.updatedAt).toLocaleString()}
+          </div>
+
           <MoveToCardSelect
             columns={columns}
             column={column}

@@ -13,8 +13,8 @@ export interface Card {
   id: string
   name: string;
   description: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Column {
@@ -48,6 +48,7 @@ export interface IAddCardAction {
   columnId: string;
   name: string;
   createdAt: string;
+  description: string;
 }
 
 export interface IRenameCardAction {
@@ -98,7 +99,6 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
       ];
 
     // TODO: validate empty title
-    // TODO: description
     case ADD_CARD:
       return state.map(c => {
         if (c.id !== action.columnId) {
@@ -112,7 +112,9 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
             {
               id: action.id,
               name: action.name,
-              description: '',
+              description: action.description,
+              createdAt: action.createdAt,
+              updatedAt: action.createdAt,
             }
           ],
         }
@@ -149,6 +151,7 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
             return {
               ...c,
               name: action.name,
+              updatedAt: action.updatedAt,
             };
           }),
         }
@@ -170,6 +173,7 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
             return {
               ...card,
               description: action.description,
+              updatedAt: action.updatedAt,
             };
           }),
         }
@@ -200,7 +204,10 @@ const columns = (state: Column[] = [], action: ActionTypes): Column[] => {
             ...c,
             cards: [
               ...c.cards,
-              card,
+              {
+                ...card,
+                updatedAt: action.updatedAt,
+              },
             ],
           };
         }

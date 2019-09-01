@@ -48,6 +48,8 @@ const addCard = (columnId: string, name: string) => ({
   name,
   columnId,
   id: uuidv4(),
+  description: '',
+  createdAt: new Date().toJSON(),
 } as IAddCardAction);
 
 const moveCard = (fromColumnId: string, toColumnId: string, id: string) => ({
@@ -55,6 +57,7 @@ const moveCard = (fromColumnId: string, toColumnId: string, id: string) => ({
   fromColumnId,
   toColumnId,
   id,
+  updatedAt: new Date().toJSON(),
 } as IMoveCardAction);
 
 const renameCard = (columnId: string, id: string, name: string) => ({
@@ -62,6 +65,7 @@ const renameCard = (columnId: string, id: string, name: string) => ({
   id,
   name,
   columnId,
+  updatedAt: new Date().toJSON(),
 } as IRenameCardAction);
 
 const removeCard = (columnId: string, id: string) => ({
