@@ -6,101 +6,101 @@ import createSagaMiddleware from 'redux-saga';
 import { loadState, saveState } from './localStorage';
 import throttle from 'lodash/throttle';
 
-const mockState: RootState = {
-  boards: [
-    {
-      id: '1',
-      name: 'Default board',
-    }
-  ],
-  columns: [
-    {
-      boardId: '1',
-      id: '1',
-      name: 'aaa',
-      cards: [
-        {
-          id: '1',
-          name: 'a1',
-          description: 'a1 description goes here',
-          createdAt: new Date().toJSON(),
-          updatedAt: new Date().toJSON(),
-        },
-        {
-          id: '2',
-          name: 'a2',
-          description: 'a2 description goes here',
-          createdAt: new Date().toJSON(),
-          updatedAt: new Date().toJSON(),
-        },
-        {
-          id: '3',
-          name: 'a3',
-          description: 'a3 description goes here',
-          createdAt: new Date().toJSON(),
-          updatedAt: new Date().toJSON(),
-        },
-      ],
-    },
-    {
-      boardId: '1',
-      id: '2',
-      name: 'bbb',
-      cards: [
-        {
-          id: '4',
-          name: 'b1',
-          description: 'b1 description goes here',
-          createdAt: new Date().toJSON(),
-          updatedAt: new Date().toJSON(),
-        },
-        {
-          id: '5',
-          name: 'b2',
-          description: 'b2 description goes here',
-          createdAt: new Date().toJSON(),
-          updatedAt: new Date().toJSON(),
-        },
-        {
-          id: '6',
-          name: 'b3',
-          description: 'b3 description goes here',
-          createdAt: new Date().toJSON(),
-          updatedAt: new Date().toJSON(),
-        },
-      ],
-    },
-    {
-      boardId: '1',
-      id: '3',
-      name: 'ccc',
-      cards: [
-        {
-          id: '7',
-          name: 'c1',
-          description: 'c1 description goes here',
-          createdAt: new Date().toJSON(),
-          updatedAt: new Date().toJSON(),
-        },
-        {
-          id: '8',
-          name: 'c2',
-          description: 'c2 description goes here',
-          createdAt: new Date().toJSON(),
-          updatedAt: new Date().toJSON(),
-        },
-        {
-          id: '9',
-          name: 'c3',
-          description: 'c3 description goes here',
-          createdAt: new Date().toJSON(),
-          updatedAt: new Date().toJSON(),
-        },
-      ],
-    },
-  ],
-  errorMessage: '',
-};
+// const mockState: RootState = {
+//   boards: [
+//     {
+//       id: '1',
+//       name: 'Default board',
+//     }
+//   ],
+//   columns: [
+//     {
+//       boardId: '1',
+//       id: '1',
+//       name: 'aaa',
+//       cards: [
+//         {
+//           id: '1',
+//           name: 'a1',
+//           description: 'a1 description goes here',
+//           createdAt: new Date().toJSON(),
+//           updatedAt: new Date().toJSON(),
+//         },
+//         {
+//           id: '2',
+//           name: 'a2',
+//           description: 'a2 description goes here',
+//           createdAt: new Date().toJSON(),
+//           updatedAt: new Date().toJSON(),
+//         },
+//         {
+//           id: '3',
+//           name: 'a3',
+//           description: 'a3 description goes here',
+//           createdAt: new Date().toJSON(),
+//           updatedAt: new Date().toJSON(),
+//         },
+//       ],
+//     },
+//     {
+//       boardId: '1',
+//       id: '2',
+//       name: 'bbb',
+//       cards: [
+//         {
+//           id: '4',
+//           name: 'b1',
+//           description: 'b1 description goes here',
+//           createdAt: new Date().toJSON(),
+//           updatedAt: new Date().toJSON(),
+//         },
+//         {
+//           id: '5',
+//           name: 'b2',
+//           description: 'b2 description goes here',
+//           createdAt: new Date().toJSON(),
+//           updatedAt: new Date().toJSON(),
+//         },
+//         {
+//           id: '6',
+//           name: 'b3',
+//           description: 'b3 description goes here',
+//           createdAt: new Date().toJSON(),
+//           updatedAt: new Date().toJSON(),
+//         },
+//       ],
+//     },
+//     {
+//       boardId: '1',
+//       id: '3',
+//       name: 'ccc',
+//       cards: [
+//         {
+//           id: '7',
+//           name: 'c1',
+//           description: 'c1 description goes here',
+//           createdAt: new Date().toJSON(),
+//           updatedAt: new Date().toJSON(),
+//         },
+//         {
+//           id: '8',
+//           name: 'c2',
+//           description: 'c2 description goes here',
+//           createdAt: new Date().toJSON(),
+//           updatedAt: new Date().toJSON(),
+//         },
+//         {
+//           id: '9',
+//           name: 'c3',
+//           description: 'c3 description goes here',
+//           createdAt: new Date().toJSON(),
+//           updatedAt: new Date().toJSON(),
+//         },
+//       ],
+//     },
+//   ],
+//   errorMessage: '',
+// };
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
@@ -114,10 +114,10 @@ const configureStore = () => {
   }
 
   let persistedState = loadState();
-  if (!persistedState) {
-    console.log('mockState');
-    persistedState = mockState;
-  }
+  // if (!persistedState) {
+  //   console.log('mockState');
+  //   persistedState = mockState;
+  // }
 
   const store = createStore(
     reducer,
