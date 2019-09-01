@@ -2,6 +2,7 @@ import React, { SyntheticEvent } from 'react';
 import { Column } from '../../reducers/columns';
 import CardWrapper from '../CardWrapper';
 import { MoveToColumnOption } from '../MoveToCardSelect';
+import './index.scss';
 
 interface IProps {
   columns: Column[];
@@ -70,7 +71,7 @@ class Cards extends React.PureComponent<IProps> {
             renameCard={this.props.renameCard}
           />)}
 
-        <div>
+        <div className='ah-add-card-wrapper'>
           <input
             onChange={this.onAddCardNameChange}
             value={this.state.name}

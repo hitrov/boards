@@ -67,28 +67,30 @@ const Column: React.FunctionComponent<IProps> =
   return (
     <div ref={drop} className={`ah-column ah-shape ${isOver ? 'ah-is-over-column' : ''}`}>
       {!displayEditName(column.id) &&
-      <span className='ah-icon' onClick={onEditColumnClick(column.id)}>
+      <div className='ah-column-name-wrapper'>
         {column.name}
-        <MdModeEdit />
-      </span>}
+        <span className='ah-icon' onClick={onEditColumnClick(column.id)}>
+          <MdModeEdit />
+        </span>
+      </div>}
 
-      {displayEditName(column.id) && <div>
-          <input
-            onChange={onRenameColumnChange(column.id)}
-            value={getTemporaryNameStateValue(column.id)}
-          />
-          <span
-            onClick={onRenameColumnClick(column.id)}
-            className='ah-icon'
-          >
-            <MdCheck />
-          </span>
-          <span
-            onClick={onCancelRenameColumnClick(column.id)}
-            className='ah-icon'
-          >
-            <MdCancel />
-          </span>
+      {displayEditName(column.id) && <div className='ah-column-name-wrapper'>
+        <input
+          onChange={onRenameColumnChange(column.id)}
+          value={getTemporaryNameStateValue(column.id)}
+        />
+        <span
+          onClick={onRenameColumnClick(column.id)}
+          className='ah-icon'
+        >
+          <MdCheck />
+        </span>
+        <span
+          onClick={onCancelRenameColumnClick(column.id)}
+          className='ah-icon'
+        >
+          <MdCancel />
+        </span>
       </div>}
 
       <span
