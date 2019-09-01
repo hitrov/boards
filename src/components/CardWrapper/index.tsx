@@ -39,7 +39,7 @@ class CardWrapper extends React.PureComponent<IProps, IState> {
     inPlaceRenameInProgress: false,
   };
 
-  componentWillMount(): void {
+  componentDidMount(): void {
     this.setState({
       description: this.props.card.description,
       name: this.props.card.name,

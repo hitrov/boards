@@ -24,7 +24,7 @@ class MoveToCardSelect extends React.PureComponent<IProps, IState> {
     moveToCardId: '',
   };
 
-  componentWillMount(): void {
+  componentDidMount(): void {
     if (this.props.moveToColumnsOptions.length) {
       this.setState({
         moveToCardId: this.props.moveToColumnsOptions[0].id,
