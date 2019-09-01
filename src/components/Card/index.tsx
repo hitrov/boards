@@ -2,7 +2,7 @@ import React, { SyntheticEvent } from 'react';
 import { Column } from '../../reducers/columns';
 import Modal from 'react-responsive-modal';
 import { Card as CardItem } from '../../reducers/columns';
-import { useDrag } from 'react-dnd';
+import { DragSource, ConnectDragSource, DragSourceMonitor, DragSourceConnector } from 'react-dnd';
 import './index.scss';
 import { ITEM_TYPES } from '../../constants';
 import MoveToCardSelect, { MoveToColumnOption } from '../MoveToCardSelect';
@@ -18,10 +18,10 @@ interface IProps {
   description: string;
   temporaryName: string;
   inPlaceRenameInProgress: boolean;
+  connectDragSource: ConnectDragSource;
 
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
 
-  // renameCard(columnId: number, id: string, name: string): void;
   onRemoveCardClick(): void;
 
   onCloseModal(): void;
@@ -53,19 +53,11 @@ const Card: React.FunctionComponent<IProps> =
      onNameChange,
      onSaveNameClick,
      temporaryName,
+
+     // These props are injected by React DnD,
+     // as defined by your `collect` function above:
+     connectDragSource,
    }) => {
-    const [{
-      isDragging,
-    }, drag] = useDrag({
-      item: {
-        type: ITEM_TYPES.CARD,
-        column: column,
-        card: card,
-      },
-      collect: monitor => ({
-        isDragging: monitor.isDragging(),
-      }),
-    });
 
     const DeleteCard = (
       <span
@@ -77,9 +69,8 @@ const Card: React.FunctionComponent<IProps> =
     );
 
     return (
-      <div
+      connectDragSource(<div
         className='ah-card ah-shape'
-        ref={drag}
       >
         <RenameCardInColumn
           column={column}
@@ -109,19 +100,19 @@ const Card: React.FunctionComponent<IProps> =
 
           {!inPlaceRenameInProgress &&
           <>
-            <h4>
-              {card.name}
-              <span onClick={toggleInPlaceRename}>
+              <h4>
+                {card.name}
+                  <span onClick={toggleInPlaceRename}>
                 <MdEdit />
               </span>
-            </h4>
+              </h4>
           </>}
 
           {inPlaceRenameInProgress &&
           <>
-            <input className='ah-in-place-rename-input' type="text" onChange={onNameChange} value={temporaryName} />
-            <span className='ah-icon' onClick={onSaveNameClick}><MdCheck /></span>
-            <span className='ah-icon' onClick={toggleInPlaceRename}><MdCancel /></span>
+              <input className='ah-in-place-rename-input' type="text" onChange={onNameChange} value={temporaryName} />
+              <span className='ah-icon' onClick={onSaveNameClick}><MdCheck /></span>
+              <span className='ah-icon' onClick={toggleInPlaceRename}><MdCancel /></span>
           </>}
 
           <div>
@@ -145,8 +136,36 @@ const Card: React.FunctionComponent<IProps> =
         </Modal>
 
         {DeleteCard}
-      </div>
+      </div>)
     );
   };
 
-export default Card;
+/**
+ * Specifies the drag source contract.
+ * Only `beginDrag` function is required.
+ */
+const cardSource = {
+  beginDrag(props: IProps) {
+    // Return the data describing the dragged item
+    const { card, column } = props;
+    return {
+      card,
+      column
+    };
+  },
+};
+
+/**
+ * Specifies which props to inject into your component.
+ */
+function collect(connect: DragSourceConnector, monitor: DragSourceMonitor) {
+  return {
+    // Call this function inside render()
+    // to let React DnD handle the drag events:
+    connectDragSource: connect.dragSource(),
+    // You can ask the monitor about the current drag state:
+    isDragging: monitor.isDragging(),
+  }
+}
+
+export default DragSource(ITEM_TYPES.CARD, cardSource, collect)(Card);
