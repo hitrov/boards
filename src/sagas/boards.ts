@@ -3,7 +3,6 @@ import {
   ADD_BOARD_SUCCESS,
 } from '../constants';
 import {put, takeLatest} from "redux-saga/effects";
-import { IBasicAction } from '../reducers';
 import { IAddBoardAction } from '../reducers/boards';
 import uuidv4 from 'uuid/v4';
 
@@ -18,7 +17,7 @@ const onAddBoard = function* () {
 };
 
 const watchBoard = function* () {
-  yield takeLatest<IBasicAction>(ADD_BOARD_REQUEST, onAddBoard);
+  yield takeLatest<IAddBoardAction>(ADD_BOARD_REQUEST, onAddBoard);
 };
 
 export {

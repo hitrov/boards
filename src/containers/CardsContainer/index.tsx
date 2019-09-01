@@ -6,6 +6,7 @@ import {
   removeCard,
   renameCard,
   changeCardDescription,
+  setErrorMessage,
 } from '../../actions';
 import { RootState } from '../../reducers';
 
@@ -17,6 +18,7 @@ const CardsContainer = connect((state: RootState) => ({
   removeCard,
   renameCard,
   changeCardDescription,
+  setErrorMessage,
 })(Cards);
 
 export default CardsContainer;

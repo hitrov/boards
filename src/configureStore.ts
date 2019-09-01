@@ -98,6 +98,7 @@ const mockState: RootState = {
       ],
     },
   ],
+  errorMessage: '',
 };
 
 // TODO: localStorage

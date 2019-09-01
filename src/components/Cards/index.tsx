@@ -11,6 +11,7 @@ interface IProps {
   renameCard(columnId: string, id: string, name: string): void;
   removeCard(columnId: string, id: string): void;
   changeCardDescription(columnId: string, id: string, description: string): void;
+  setErrorMessage(message: string): void;
 }
 
 interface IState {
@@ -57,6 +58,11 @@ class Cards extends React.PureComponent<IProps, IState> {
 
     const newName = c.name;
 
+    if (newName === '') {
+      this.props.setErrorMessage('Card name is required.');
+      return;
+    }
+
     this.setState(prevState => ({
       renamingCards: prevState.renamingCards.filter(c => c.id !== id),
     }), () => this.props.renameCard(this.props.column.id, id, newName));
@@ -87,8 +93,15 @@ class Cards extends React.PureComponent<IProps, IState> {
     }));
   };
 
-  onAddColumn = () => {
-    this.props.addCard(this.props.column.id, this.state.name);
+  onAddCardClick = () => {
+    const newName = this.state.name;
+
+    if (newName === '') {
+      this.props.setErrorMessage('Card name is required.');
+      return;
+    }
+
+    this.props.addCard(this.props.column.id, newName);
 
     this.setState({
       name: '',
@@ -114,7 +127,7 @@ class Cards extends React.PureComponent<IProps, IState> {
           Name:
           <input onChange={this.onAddCardNameChange} value={this.state.name} />
           <button
-            onClick={this.onAddColumn}
+            onClick={this.onAddCardClick}
           >
             Add card
           </button>
@@ -129,6 +142,7 @@ class Cards extends React.PureComponent<IProps, IState> {
             moveCard={this.props.moveCard}
             removeCard={this.props.removeCard}
             changeCardDescription={this.props.changeCardDescription}
+            setErrorMessage={this.props.setErrorMessage}
           >
             <button
               onClick={this.onEditCardClick(card.id)}

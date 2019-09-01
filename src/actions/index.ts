@@ -7,7 +7,7 @@ import {
   REMOVE_CARD,
   REMOVE_COLUMN,
   RENAME_CARD,
-  RENAME_COLUMN,
+  RENAME_COLUMN, SET_ERROR_MESSAGE,
 } from '../constants';
 import {
   IAddCardAction,
@@ -20,6 +20,7 @@ import {
   IRenameColumnAction
 } from '../reducers/columns';
 import uuidv4 from 'uuid/v4';
+import { ISetErrorMessageAction } from '../reducers/errorMessage';
 
 const addBoard = () => ({
   type: ADD_BOARD_REQUEST,
@@ -82,6 +83,11 @@ const changeCardDescription = (columnId: string, id: string, description: string
   updatedAt: new Date().toJSON(),
 } as IChangeCardDescription);
 
+const setErrorMessage = (message: string) => ({
+  type: SET_ERROR_MESSAGE,
+  message,
+} as ISetErrorMessageAction);
+
 export {
   addBoard,
   addColumn,
@@ -92,4 +98,5 @@ export {
   renameCard,
   removeCard,
   changeCardDescription,
+  setErrorMessage,
 };

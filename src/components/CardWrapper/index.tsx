@@ -17,6 +17,7 @@ interface IProps extends RouteComponentProps<RouteParams> {
   // renameCard(columnId: number, id: string, name: string): void;
   removeCard(columnId: string, id: string): void;
   changeCardDescription(columnId: string, id: string, description: string): void;
+  setErrorMessage(message: string): void;
 }
 
 interface IState {

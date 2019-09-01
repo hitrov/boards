@@ -1,4 +1,3 @@
-import { IBasicAction } from './index';
 import {
   ADD_BOARD_SUCCESS,
 } from '../constants';
@@ -8,7 +7,8 @@ export interface Board {
   name: string;
 }
 
-export interface IAddBoardAction extends IBasicAction {
+export interface IAddBoardAction {
+  type: typeof ADD_BOARD_SUCCESS,
   id: string;
   name: string;
 }

@@ -25,7 +25,6 @@ interface IProps {
   onSaveDescriptionClick(): void;
 }
 
-// TODO: display column title
 const Card: React.FunctionComponent<IProps> =
   ({
      columns,
@@ -64,6 +63,7 @@ const Card: React.FunctionComponent<IProps> =
           onClose={onCloseModal}
           center
         >
+          <h5>Column: {column.name}</h5>
           {card.name}
 
           <div>

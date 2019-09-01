@@ -6,12 +6,14 @@ import './index.scss';
 
 interface IProps {
   boardId: string;
+  errorMessage: string;
   columns: ColumnItem[];
 
   addColumn(name: string, boardId: string): void;
   renameColumn(id: string, name: string): void;
   removeColumn(id: string): void;
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
+  setErrorMessage(message: string): void;
 }
 
 interface IState {
@@ -89,7 +91,13 @@ class Columns extends React.PureComponent<IProps, IState> {
   };
 
   onAddColumn = () => {
-    this.props.addColumn(this.state.name, this.props.boardId);
+    const { name } = this.state;
+    if (name === '') {
+      this.props.setErrorMessage('Column name is required.');
+      return;
+    }
+
+    this.props.addColumn(name, this.props.boardId);
 
     this.setState({
       name: '',
@@ -112,6 +120,7 @@ class Columns extends React.PureComponent<IProps, IState> {
   render() {
     return (
       <Grid className='ah-columns'>
+        <h3 className='ah-error-message'>{this.props.errorMessage}</h3>
         <Row>
           <Col>
             Name:
