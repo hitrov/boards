@@ -1,6 +1,6 @@
 import React from 'react';
 import { Board as BoardItem } from '../../reducers/boards';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers';
 import {
@@ -14,7 +14,7 @@ interface IProps {
 }
 
 // TODO: nav list
-const Boards = ({boards, addBoard}: IProps) => {
+const BoardsContainer = ({boards, addBoard}: IProps) => {
   return (
     <div>
       <h1>Boards</h1>
@@ -41,4 +41,4 @@ export default connect((state: RootState) => ({
   boards: state.boards,
 }), {
   addBoard,
-})(Boards);
+})(BoardsContainer);

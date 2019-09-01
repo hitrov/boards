@@ -1,5 +1,5 @@
 import React from 'react';
-import Columns from '../Columns';
+import Columns from '../../components/Columns';
 import { Column } from '../../reducers/columns';
 import { RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
@@ -25,7 +25,7 @@ interface IProps extends RouteComponentProps<RouteParams> {
   setErrorMessage(message: string): void;
 }
 
-const Board: React.FunctionComponent<IProps> =
+const BoardContainer: React.FunctionComponent<IProps> =
   ({
      columns,
      addColumn,
@@ -57,4 +57,4 @@ export default connect((state: RootState) => ({
   removeColumn,
   moveCard,
   setErrorMessage,
-})(Board);
+})(BoardContainer);
