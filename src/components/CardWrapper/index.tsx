@@ -14,10 +14,10 @@ interface IProps extends RouteComponentProps<RouteParams> {
   column: Column;
   card: CardItem;
   moveCard(fromColumnId: string, toColumnId: string, id: string): void;
-  // renameCard(columnId: number, id: string, name: string): void;
   removeCard(columnId: string, id: string): void;
   changeCardDescription(columnId: string, id: string, description: string): void;
   setErrorMessage(message: string): void;
+  renameCard(columnId: string, id: string, name: string): void;
 }
 
 interface IState {
@@ -68,9 +68,9 @@ class CardWrapper extends React.PureComponent<IProps, IState> {
         onDescriptionChange={this.onDescriptionChange}
         description={this.state.description}
         onSaveDescriptionClick={this.onSaveDescriptionClick}
-      >
-        {this.props.children}
-      </Card>
+        renameCard={this.props.renameCard}
+        setErrorMessage={this.props.setErrorMessage}
+      />
     )
   }
 }

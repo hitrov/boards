@@ -7,6 +7,7 @@ import './index.scss';
 import { ITEM_TYPES } from '../../constants';
 import MoveToCardSelect from '../MoveToCardSelect';
 import { Link } from 'react-router-dom';
+import RenameCardInColumn from '../RenameCardInColumn';
 
 interface IProps {
   columns: Column[];
@@ -23,6 +24,8 @@ interface IProps {
   onCloseModal(): void;
   onDescriptionChange(e: SyntheticEvent): void;
   onSaveDescriptionClick(): void;
+  setErrorMessage(message: string): void;
+  renameCard(columnId: string, id: string, name: string): void;
 }
 
 const Card: React.FunctionComponent<IProps> =
@@ -30,7 +33,6 @@ const Card: React.FunctionComponent<IProps> =
      columns,
      column,
      card,
-     children,
      moveCard,
      onCloseModal,
      isModalOpened,
@@ -38,6 +40,8 @@ const Card: React.FunctionComponent<IProps> =
      description,
      onSaveDescriptionClick,
      onRemoveCardClick,
+     setErrorMessage,
+     renameCard,
    }) => {
     const [{
       isDragging,
@@ -51,11 +55,27 @@ const Card: React.FunctionComponent<IProps> =
         isDragging: monitor.isDragging(),
       }),
     });
+
+    const DeleteCard = (
+      <button
+        onClick={onRemoveCardClick}
+      >
+        X
+      </button>
+    );
+
     return (
       <div
         className='ah-card'
         ref={drag}
       >
+        <RenameCardInColumn
+          column={column}
+          card={card}
+          renameCard={renameCard}
+          setErrorMessage={setErrorMessage}
+        />
+
         <Link to={`/boards/${column.boardId}/cards/${card.id}`}>{card.name}</Link>
 
         <Modal
@@ -83,11 +103,11 @@ const Card: React.FunctionComponent<IProps> =
           <textarea onChange={onDescriptionChange} value={description} />
           <button onClick={onSaveDescriptionClick}>Save</button>
 
-          <button onClick={onRemoveCardClick}>Delete</button>
+          {DeleteCard}
 
         </Modal>
 
-        {children}
+        {DeleteCard}
       </div>
     );
   };

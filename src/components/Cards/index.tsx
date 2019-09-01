@@ -16,17 +16,12 @@ interface IProps {
 
 interface IState {
   name: string;
-  renamingCards: {
-    id: string;
-    name: string;
-  }[],
 }
 
 // TODO: rename card separate component
-class Cards extends React.PureComponent<IProps, IState> {
+class Cards extends React.PureComponent<IProps> {
   public readonly state: Readonly<IState> = {
     name: '',
-    renamingCards: [],
   };
 
   onAddCardNameChange = (e: SyntheticEvent) => {
@@ -35,63 +30,6 @@ class Cards extends React.PureComponent<IProps, IState> {
     this.setState({
       name,
     });
-  };
-
-  onRenameCardChange = (id: string) => (e: SyntheticEvent) => {
-    const newName = (e.target as HTMLInputElement).value;
-
-    this.setState(prevState => ({
-      renamingCards: [
-        ...prevState.renamingCards.filter(c => c.id !== id),
-        {
-          id,
-          name: newName,
-        },
-      ],
-    }));
-  };
-
-  onRenameCardClick = (id: string) => () => {
-    const c = this.state.renamingCards.find(c => c.id === id);
-    if (!c) {
-      return;
-    }
-
-    const newName = c.name;
-
-    if (newName === '') {
-      this.props.setErrorMessage('Card name is required.');
-      return;
-    }
-
-    this.setState(prevState => ({
-      renamingCards: prevState.renamingCards.filter(c => c.id !== id),
-    }), () => this.props.renameCard(this.props.column.id, id, newName));
-  };
-
-  onEditCardClick = (id: string) => () => {
-    const c = this.props.column.cards.find(c => c.id === id);
-    if (!c) {
-      return;
-    }
-
-    const oldName = c.name;
-
-    this.setState(prevState => ({
-      renamingCards: [
-        ...prevState.renamingCards.filter(c => c.id !== id),
-        {
-          id,
-          name: oldName,
-        },
-      ],
-    }));
-  };
-
-  onCancelRenameCardClick = (id: string) => () => {
-    this.setState(prevState => ({
-      renamingCards: prevState.renamingCards.filter(c => c.id !== id),
-    }));
   };
 
   onAddCardClick = () => {
@@ -107,18 +45,6 @@ class Cards extends React.PureComponent<IProps, IState> {
     this.setState({
       name: '',
     });
-  };
-
-  getTemporaryNameStateValue = (id: string): string => {
-    const column = this.state.renamingCards.find(c => c.id === id);
-    if (!column) {
-      return '';
-    }
-    return column.name;
-  };
-
-  displayEditName = (id: string): boolean => {
-    return this.state.renamingCards.find(c => c.id === id) !== undefined;
   };
 
   render() {
@@ -144,36 +70,8 @@ class Cards extends React.PureComponent<IProps, IState> {
             removeCard={this.props.removeCard}
             changeCardDescription={this.props.changeCardDescription}
             setErrorMessage={this.props.setErrorMessage}
-          >
-            <button
-              onClick={this.onEditCardClick(card.id)}
-            >
-              Edit card
-            </button>
-
-            {this.displayEditName(card.id) && <div>
-                <input
-                    onChange={this.onRenameCardChange(card.id)}
-                    value={this.getTemporaryNameStateValue(card.id)}
-                />
-                <button
-                    onClick={this.onRenameCardClick(card.id)}
-                >
-                    Rename card
-                </button>
-                <button
-                    onClick={this.onCancelRenameCardClick(card.id)}
-                >
-                    Cancel rename card
-                </button>
-            </div>}
-
-            <button
-              onClick={() => this.props.removeCard(this.props.column.id, card.id)}
-            >
-              X
-            </button>
-          </CardWrapper>)}
+            renameCard={this.props.renameCard}
+          />)}
       </div>
     );
   }

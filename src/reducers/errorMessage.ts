@@ -1,4 +1,10 @@
-import { ADD_CARD, ADD_COLUMN, CLEAR_ERROR_MESSAGE, SET_ERROR_MESSAGE, } from '../constants';
+import {
+  ADD_CARD,
+  ADD_COLUMN,
+  CLEAR_ERROR_MESSAGE,
+  RENAME_CARD,
+  SET_ERROR_MESSAGE,
+} from '../constants';
 
 export interface ISetErrorMessageAction {
   type: typeof SET_ERROR_MESSAGE;
@@ -10,7 +16,8 @@ export interface IClearErrorMessageAction {
   message: string;
 }
 
-type ActionTypes = ISetErrorMessageAction | IClearErrorMessageAction | {type: typeof ADD_COLUMN} | {type: typeof ADD_CARD};
+type ActionTypes = ISetErrorMessageAction | IClearErrorMessageAction |
+  {type: typeof ADD_COLUMN} | {type: typeof ADD_CARD} | {type: typeof RENAME_CARD};
 
 const errorMessage = (state = '', action: ActionTypes): string => {
   switch (action.type) {
@@ -22,6 +29,7 @@ const errorMessage = (state = '', action: ActionTypes): string => {
 
     case ADD_COLUMN:
     case ADD_CARD:
+    case RENAME_CARD:
       return '';
 
     default:

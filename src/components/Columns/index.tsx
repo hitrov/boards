@@ -60,6 +60,11 @@ class Columns extends React.PureComponent<IProps, IState> {
 
     const newName = c.name;
 
+    if (newName === '') {
+      this.props.setErrorMessage('Column name is required.');
+      return;
+    }
+
     this.setState(prevState => ({
       renamingColumns: prevState.renamingColumns.filter(c => c.id !== id),
     }), () => this.props.renameColumn(id, newName));
