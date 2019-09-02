@@ -53,5 +53,5 @@
     "@types/react-router-dom": "^4.3.5",
     "@types/redux-logger": "^3.0.7"
   },
-  "homepage": "https://www.boards.hitrov.com"
+  "homepage": "https://hitrov.github.io/boards"
 }
