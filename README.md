@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/hitrov/boards.svg?branch=master)](https://travis-ci.org/hitrov/boards)
 
 Deployed version is available 
-- GitHub Pages with Travis CI https://www.boards.hitrov.com
 - Self-hosted https://board.hitrov.com
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
