@@ -10,7 +10,7 @@ interface IProps {
 
 const Root = ({store}: IProps) => (
   <Provider store={store}>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={`${process.env.PUBLIC_URL}/`}>
       <App/>
     </BrowserRouter>
   </Provider>
