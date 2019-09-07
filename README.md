@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/hitrov/boards.svg?branch=master)](https://travis-ci.org/hitrov/boards)
 
+Requirements are [here](/frontend_board.pdf)
+
 Deployed version is available 
 - Self-hosted https://board.hitrov.com
 
