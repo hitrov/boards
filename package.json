@@ -9,7 +9,6 @@
     "@types/react-dom": "16.9.0",
     "@types/uuid": "^3.4.5",
     "lodash": "^4.17.15",
-    "node-sass": "^4.12.0",
     "react": "^16.9.0",
     "react-dnd": "^9.3.4",
     "react-dnd-html5-backend": "^9.3.4",
@@ -23,6 +22,7 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.5",
+    "sass": "^1.77.8",
     "typescript": "3.5.3",
     "uuid": "^3.3.3"
   },

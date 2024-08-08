@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Install Python 2
+        run: sudo apt-get install python2
+
       - name: Install dependencies
         run: yarn install
 
